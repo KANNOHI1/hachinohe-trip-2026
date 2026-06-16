@@ -19,7 +19,7 @@ const isHanedaGroup = (title: string) => title.includes('羽田');
     暫定便は決定済み。9/23（水・祝）の三沢→丘珠 JAL2816 はシルバーウィーク臨時便次第のため、2026年9月ダイヤ公開後に確認します。
   </div>
 
-  <SectionTitle title="暫定フライト候補" description="宏勇が調べた便をそのまま明記。第一候補と帰り候補はバッジで表示します。" />
+  <SectionTitle title="暫定フライト候補" description="宏勇が調べた便をそのまま明記。行き第一候補と帰り便はバッジで表示します。" />
   <section class="stack">
     {flights.map((group) => {
       if (!isHanedaGroup(group.title)) {

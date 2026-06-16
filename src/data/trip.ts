@@ -82,6 +82,7 @@ export type Place = {
   tags: string[];
   mapUrl: string;
   image?: string;
+  imageCredit?: string;
 };
 
 export type ItineraryDay = {
@@ -173,12 +174,12 @@ export const flights: FlightGroup[] = [
     title: '東京（羽田）↔ 三沢',
     status: 'check',
     note:
-      'JAL・通年毎日運航。運航は前提にしてOK。暫定でこの便を置き、便/時刻の確定は2026年9月ダイヤ公開後に確認。',
+      'JAL・通年毎日運航。宏勇の帰りは JAL154 12:50→14:15 を確定として置く。9/23朝は長流寺墓参から12:50発へ逆算して動く。',
     details: [
       '羽田→三沢: JAL153 08:15→09:30 / JAL155 10:45→12:05 / JAL157 14:55→16:10 / JAL159 17:05→18:30',
       '三沢→羽田: JAL152 10:10→11:35 / JAL154 12:50→14:15 / JAL156 16:50→18:15 / JAL158 19:10→20:35',
       '宏勇 行き第一候補: JAL155 10:45→12:05',
-      '宏勇 帰り候補: JAL156',
+      '宏勇 帰り: JAL154 12:50→14:15（確定）',
     ],
     flights: [
       { route: '羽田→三沢', flightNo: 'JAL153', depart: '08:15', arrive: '09:30' },
@@ -193,15 +194,15 @@ export const flights: FlightGroup[] = [
       { route: '羽田→三沢', flightNo: 'JAL157', depart: '14:55', arrive: '16:10' },
       { route: '羽田→三沢', flightNo: 'JAL159', depart: '17:05', arrive: '18:30' },
       { route: '三沢→羽田', flightNo: 'JAL152', depart: '10:10', arrive: '11:35' },
-      { route: '三沢→羽田', flightNo: 'JAL154', depart: '12:50', arrive: '14:15' },
       {
         route: '三沢→羽田',
-        flightNo: 'JAL156',
-        depart: '16:50',
-        arrive: '18:15',
+        flightNo: 'JAL154',
+        depart: '12:50',
+        arrive: '14:15',
         isPrimary: true,
-        primaryLabel: '宏勇 帰り候補',
+        primaryLabel: '宏勇 帰り',
       },
+      { route: '三沢→羽田', flightNo: 'JAL156', depart: '16:50', arrive: '18:15' },
       { route: '三沢→羽田', flightNo: 'JAL158', depart: '19:10', arrive: '20:35' },
     ],
   },
@@ -453,6 +454,8 @@ export const places: Place[] = [
     status: 'tentative',
     tags: ['龍泉洞', '鍾乳洞', '地底湖', '岩手', '岩泉'],
     mapUrl: mapSearch('岩手県下閉伊郡岩泉町岩泉字神成1-1'),
+    image: 'images/places/ryusendo.jpg',
+    imageCredit: '龍泉洞 — Public Domain / Wikimedia Commons',
   },
   {
     name: '長流寺（ちょうりゅうじ）',
@@ -477,7 +480,6 @@ export const places: Place[] = [
     status: 'interest',
     tags: ['神社', '震災', '鳥居', '海', '個人的興味'],
     mapUrl: mapSearch('青森県八戸市鮫町大作平45'),
-    image: 'images/places/benten.jpg',
   },
   {
     name: '蕪嶋神社',
@@ -487,6 +489,7 @@ export const places: Place[] = [
     tags: ['神社', '弁天', '宗像三女神', '漁業', 'ウミネコ'],
     mapUrl: mapSearch('青森県八戸市鮫町鮫56-2'),
     image: 'images/places/kabushima.jpg',
+    imageCredit: '蕪嶋神社 — © くろふね (Jranar), CC BY 4.0 / Wikimedia Commons',
   },
   {
     name: '種差海岸',
@@ -495,6 +498,7 @@ export const places: Place[] = [
     tags: ['海', '景色', 'ドライブ', '八戸'],
     mapUrl: mapSearch('種差海岸'),
     image: 'images/places/tanesashi.jpg',
+    imageCredit: '種差海岸 — © くろふね (Jranar), CC BY 4.0 / Wikimedia Commons',
   },
   {
     name: 'みろく横丁・八戸横丁群',
@@ -503,6 +507,7 @@ export const places: Place[] = [
     tags: ['夜', '飲食', '横丁', '八戸中心街'],
     mapUrl: mapSearch('みろく横丁 八戸横丁群'),
     image: 'images/places/miroku.jpg',
+    imageCredit: 'みろく横丁 — © 七厩拓, CC BY-SA 4.0 / Wikimedia Commons',
   },
 ];
 

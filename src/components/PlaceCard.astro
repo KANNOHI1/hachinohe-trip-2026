@@ -12,13 +12,17 @@ const imageSrc = place.image ? `${base}${place.image.replace(/^\/+/, '')}` : und
 const items = [...(place.address ? [place.address] : []), ...place.memo, ...place.tags.map((tag) => `#${tag}`)];
 ---
 
-<article class="card place-card">
-  {imageSrc && <img class="place-image" src={imageSrc} alt={place.name} loading="lazy" />}
-  <div class="place-body">
-    <div class="split-title">
-      <h3>{place.name}</h3>
+<details class="card place-card">
+  <summary class:list={['place-summary', imageSrc ? 'with-image' : 'no-image']}>
+    {imageSrc && <img class="place-image" src={imageSrc} alt={place.name} loading="lazy" />}
+    <span class="summary-shade" aria-hidden="true"></span>
+    <span class="summary-content">
+      <span class="place-title">{place.name}</span>
       <StatusBadge status={place.status} />
-    </div>
+    </span>
+    <span class="toggle" aria-hidden="true">▼</span>
+  </summary>
+  <div class="place-body">
     <ul class="list">
       {items.map((item) => (
         <li>{item}</li>
@@ -26,27 +30,88 @@ const items = [...(place.address ? [place.address] : []), ...place.memo, ...plac
     </ul>
     <a class="text-link" href={place.mapUrl} target="_blank" rel="noreferrer">地図を見る</a>
   </div>
-</article>
+</details>
 
 <style>
   .place-card {
     overflow: hidden;
   }
 
+  .place-summary {
+    align-items: end;
+    cursor: pointer;
+    display: grid;
+    min-height: 132px;
+    overflow: hidden;
+    padding: 1rem;
+    position: relative;
+  }
+
+  .place-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .place-summary::marker {
+    content: '';
+  }
+
+  .place-summary.no-image {
+    background:
+      linear-gradient(135deg, rgba(24, 75, 87, 0.96), rgba(22, 45, 60, 0.98)),
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 32%);
+  }
+
   .place-image {
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius) var(--radius) 0 0;
     display: block;
+    height: 100%;
+    inset: 0;
     object-fit: cover;
+    position: absolute;
     width: 100%;
+  }
+
+  .summary-shade {
+    background: linear-gradient(transparent 18%, rgba(10, 23, 30, 0.84));
+    inset: 0;
+    position: absolute;
+  }
+
+  .summary-content {
+    align-items: end;
+    display: flex;
+    gap: 0.6rem;
+    justify-content: space-between;
+    padding-right: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .place-title {
+    color: #fff;
+    font-size: 1.18rem;
+    font-weight: 900;
+    line-height: 1.25;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  .toggle {
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 900;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 160ms ease;
+    z-index: 1;
+  }
+
+  .place-card[open] .toggle {
+    transform: translateY(-50%) rotate(180deg);
   }
 
   .place-body {
     padding: 1rem;
-  }
-
-  .place-card h3 {
-    font-size: 1.08rem;
   }
 
   .text-link {
