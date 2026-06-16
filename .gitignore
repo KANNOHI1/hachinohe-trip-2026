@@ -36,3 +36,6 @@ codex_logs/
 .playwright-mcp/
 *-mobile.jpeg
 *-desktop.jpeg
+
+# 個人的メモ（公開しない・長流寺墓参まとめ等）
+_private/

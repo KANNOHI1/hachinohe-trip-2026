@@ -2,11 +2,41 @@
 import Layout from '../layouts/Layout.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import InfoCard from '../components/InfoCard.astro';
-import PlanCard from '../components/PlanCard.astro';
-import { checklist, flights, plans, tripOverview } from '../data/trip';
+import { arrivalJourney, checklist, flights, plans, tripOverview } from '../data/trip';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5);
+
+const dayDates: Record<string, string> = {
+  'Day 1': '9/20（日）',
+  'Day 2': '9/21（月・祝）',
+  'Day 3': '9/22（火・休日）',
+  'Day 4': '9/23（水・祝）',
+};
+
+const tabIds = ['a', 'b', 'c'] as const;
+
+const planTabs = plans.map((plan, index) => {
+  const dayLines = plan.summary
+    .filter((line) => /^Day\s*\d/.test(line))
+    .map((line) => {
+      const match = line.match(/^(Day\s*(\d))\s+(.+)$/);
+      const day = match ? `Day ${match[2]}` : line;
+      return {
+        day,
+        date: dayDates[day] ?? '',
+        body: match ? match[3] : line,
+        status: day === 'Day 4' ? 'check' : plan.status,
+      };
+    });
+
+  return {
+    id: tabIds[index],
+    plan,
+    stayLines: plan.summary.filter((line) => line.includes('泊目') && !/^Day\s*\d/.test(line)),
+    dayLines,
+  };
+});
 ---
 
 <Layout hero>
@@ -26,13 +56,76 @@ const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5
     <InfoCard title="基本方針" items={tripOverview.policy} />
   </section>
 
-  <SectionTitle title="プラン比較（A / B / C）" description="本命は Plan A（八戸ベース＋龍泉洞泊）。B/Cは泊まり方違いの別案。" />
-  <section class="plan-comparison" aria-label="プラン比較">
-    {plans.map((plan) => (
-      <div class:list={['plan-panel', plan.name === 'Plan A' && 'recommended']}>
-        <PlanCard plan={plan} />
-      </div>
-    ))}
+  <SectionTitle title="旅の始まり — 9/20 三沢で合流" description="2本の移動タイムラインが、13:00に三沢空港で1本になります。" />
+  <section class="arrival-story" aria-label="三沢空港での合流タイムライン">
+    <div class="arrival-tracks">
+      {arrivalJourney.tracks.map((track) => (
+        <article class="arrival-track">
+          <header>
+            <p>{track.direction}</p>
+            <h2>{track.person}</h2>
+            <span>{track.origin} 出発</span>
+          </header>
+          <ol>
+            {track.steps.map((step) => (
+              <li>{step}</li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
+
+    <div class="merge-node">
+      <span class="merge-time">{arrivalJourney.merge.time}</span>
+      <strong>{arrivalJourney.merge.place}</strong>
+      <p>{arrivalJourney.merge.steps.join(' → ')}</p>
+    </div>
+  </section>
+
+  <SectionTitle title="日程（プラン別）" description="Plan Aが本命。タブはCSSラジオ方式で切り替えます。" />
+  <section class="plan-tabs" aria-label="プラン別日程">
+    <input class="tab-input" type="radio" name="itinplan" id="itab-a" checked />
+    <input class="tab-input" type="radio" name="itinplan" id="itab-b" />
+    <input class="tab-input" type="radio" name="itinplan" id="itab-c" />
+
+    <div class="tab-labels" aria-label="プラン選択">
+      <label for="itab-a">Plan A <span>本命</span></label>
+      <label for="itab-b">Plan B</label>
+      <label for="itab-c">Plan C</label>
+    </div>
+
+    <div class="tab-panels">
+      {planTabs.map((tab) => (
+        <article class={`tab-panel panel-${tab.id}`}>
+          <header class="plan-heading">
+            <p>{tab.plan.name}</p>
+            <h2>{tab.plan.route}</h2>
+            <span class={`status-badge ${tab.plan.status}`}>{tab.plan.status === 'tentative' ? '未確定' : '要確認'}</span>
+          </header>
+
+          <div class="stay-summary" aria-label={`${tab.plan.name}の宿`}>
+            {tab.stayLines.map((line) => (
+              <span>{line}</span>
+            ))}
+          </div>
+
+          <ol class="day-timeline">
+            {tab.dayLines.map((day) => (
+              <li>
+                <div class="day-marker">
+                  <strong>{day.day}</strong>
+                  <span>{day.date}</span>
+                </div>
+                <div class="day-card">
+                  <span class={`status-badge ${day.status}`}>{day.status === 'check' ? '要確認' : '未確定'}</span>
+                  <p>{day.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
   </section>
 
   <SectionTitle title="重要な未確定事項" description="旅行の骨格に影響する確認項目だけを先に見える場所へ置いています。" />
@@ -51,39 +144,255 @@ const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5
 </Layout>
 
 <style>
-  .plan-comparison {
-    display: flex;
+  .arrival-story {
+    display: grid;
     gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
   }
 
-  .plan-comparison > * {
-    flex: 0 0 82vw;
-    scroll-snap-align: start;
+  .arrival-tracks {
+    display: grid;
+    gap: 1rem;
   }
 
-  .plan-panel {
-    scroll-snap-align: start;
-  }
-
-  .plan-panel.recommended {
+  .arrival-track {
+    border: 1px solid var(--color-border);
     border-radius: var(--radius);
-    outline: 2px solid rgba(192, 71, 59, 0.45);
-    outline-offset: 3px;
+    background: var(--color-surface);
+    padding: 1rem;
+  }
+
+  .arrival-track header {
+    display: grid;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .arrival-track header p,
+  .plan-heading p {
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .arrival-track h2,
+  .plan-heading h2 {
+    font-size: 1.35rem;
+    margin: 0;
+  }
+
+  .arrival-track header span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .arrival-track ol,
+  .day-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .arrival-track li {
+    border-left: 2px solid rgba(192, 71, 59, 0.35);
+    padding: 0 0 1rem 1rem;
+    position: relative;
+  }
+
+  .arrival-track li:last-child {
+    padding-bottom: 0;
+  }
+
+  .arrival-track li::before {
+    background: var(--color-accent);
+    border: 2px solid var(--color-surface);
+    border-radius: 50%;
+    content: '';
+    height: 0.7rem;
+    left: -0.43rem;
+    position: absolute;
+    top: 0.2rem;
+    width: 0.7rem;
+  }
+
+  .merge-node {
+    background: var(--color-accent);
+    border-radius: var(--radius);
+    color: white;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .merge-node strong {
+    display: block;
+    font-size: 1.35rem;
+    margin: 0.15rem 0;
+  }
+
+  .merge-node p {
+    margin: 0.35rem 0 0;
+  }
+
+  .merge-time {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .plan-tabs {
+    display: grid;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .tab-input {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  .tab-labels {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0.35rem;
+  }
+
+  .tab-labels label {
+    border-radius: calc(var(--radius) - 2px);
+    color: var(--color-muted);
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+  }
+
+  .tab-labels span {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  #itab-a:checked ~ .tab-labels label[for='itab-a'],
+  #itab-b:checked ~ .tab-labels label[for='itab-b'],
+  #itab-c:checked ~ .tab-labels label[for='itab-c'] {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .tab-panel {
+    display: none;
+  }
+
+  #itab-a:checked ~ .tab-panels .panel-a,
+  #itab-b:checked ~ .tab-panels .panel-b,
+  #itab-c:checked ~ .tab-panels .panel-c {
+    display: block;
+  }
+
+  .tab-panel,
+  .plan-heading,
+  .day-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+
+  .tab-panel {
+    padding: 1rem;
+  }
+
+  .plan-heading {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+
+  .stay-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .stay-summary span {
+    background: rgba(192, 71, 59, 0.08);
+    border: 1px solid rgba(192, 71, 59, 0.22);
+    border-radius: 999px;
+    color: var(--color-text);
+    font-size: 0.85rem;
+    padding: 0.4rem 0.65rem;
+  }
+
+  .day-timeline {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .day-timeline li {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .day-marker {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .day-marker span {
+    color: var(--color-muted);
+  }
+
+  .day-card {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.9rem;
+  }
+
+  .day-card p {
+    margin: 0;
+  }
+
+  .status-badge {
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    justify-self: start;
+    padding: 0.25rem 0.55rem;
+  }
+
+  .status-badge.tentative {
+    background: rgba(182, 124, 47, 0.16);
+    color: #8a560f;
+  }
+
+  .status-badge.check {
+    background: rgba(31, 91, 125, 0.14);
+    color: #1f5b7d;
   }
 
   @media (min-width: 768px) {
-    .plan-comparison {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      overflow: visible;
+    .arrival-tracks {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .plan-comparison > * {
-      flex: none;
+    .merge-node {
+      justify-self: center;
+      min-width: min(28rem, 100%);
+    }
+
+    .day-timeline li {
+      align-items: start;
+      grid-template-columns: 8rem 1fr;
+    }
+
+    .day-marker {
+      display: grid;
+      gap: 0.2rem;
+      justify-content: start;
     }
   }
 </style>
