@@ -7,6 +7,7 @@ import { checklist, flights, plans, tripOverview } from '../data/trip';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5);
+const recommendedPlan = plans.find((plan) => plan.name === 'Plan C') ?? plans[0];
 ---
 
 <Layout hero>
@@ -19,19 +20,19 @@ const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5
 
   <header class="page-header">
     <h1>旅の現在地</h1>
-    <p>{tripOverview.dateRange}。三沢空港合流を第一候補にしつつ、9月ダイヤと宿を確認しながら固める静的しおりです。</p>
+    <p>{tripOverview.dateRange}。三沢空港IN / 三沢空港OUTを前提に、3泊目は八戸で締める静的しおりです。</p>
   </header>
 
   <section class="grid two">
     <InfoCard title="基本方針" items={tripOverview.policy} />
-    <InfoCard title="参加者" items={tripOverview.participants.map((person) => `${person.name}：${person.from}`)} />
   </section>
 
-  <SectionTitle title="現在のメインプラン" description="三沢空港IN / 三沢空港OUTを第一候補にし、帰路の丘珠便が出ない場合は青森空港OUTへ切り替えます。" />
-  <PlanCard plan={plans[0]} />
+  <SectionTitle title="現在のメインプラン" description="推しは Plan C「八戸拠点・凱旋型」。確定ではなく仮置きですが、初日と3泊目を八戸に寄せる前提で比較します。" />
+  <PlanCard plan={recommendedPlan} />
 
   <SectionTitle title="重要な未確定事項" description="旅行の骨格に影響する確認項目だけを先に見える場所へ置いています。" />
   <section class="grid two">
+    <InfoCard title="飛行機の前提" body="暫定便は決定済み（Flights参照）／確定は9月ダイヤ公開待ち。" status="check" />
     {flights.map((group) => <InfoCard title={group.title} body={group.note} status={group.status} />)}
     {keyChecks.map((item) => <InfoCard title={item.title} body={item.note} status={item.status} />)}
   </section>
@@ -39,7 +40,7 @@ const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5
   <SectionTitle title="次に決めること" />
   <section class="grid three">
     <InfoCard title="9月ダイヤ確認" body="三沢↔丘珠と羽田↔三沢の2026年9月ダイヤを公式発表後に確認。" status="check" />
-    <InfoCard title="宿候補を絞る" body="青森屋、奥入瀬、蔦温泉、八戸中心街のどこを旅の軸にするか決める。" status="tentative" />
-    <InfoCard title="レンタカー条件" body="青森空港OUTになった場合の乗り捨て可否と料金を確認。" status="check" />
+    <InfoCard title="宿候補を絞る" body="Plan Cを軸に、八戸中心街と旅館系の組み合わせを決める。" status="tentative" />
+    <InfoCard title="レンタカー条件" body="三沢空港IN / 三沢空港OUTの貸出・返却時刻と料金を確認。" status="check" />
   </section>
 </Layout>

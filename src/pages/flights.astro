@@ -8,15 +8,15 @@ import { flights } from '../data/trip';
 <Layout title="Flights">
   <header class="page-header">
     <h1>Flights</h1>
-    <p>三沢空港での合流を第一候補にしたフライトメモ。9月ダイヤは未確定のため、現時点ではすべて要確認です。</p>
+    <p>三沢空港IN/OUTの暫定便一覧。羽田⇔三沢は運航前提、丘珠⇔三沢は限定運航として置き、確定は2026年9月ダイヤ公開後に確認します。</p>
   </header>
 
   <div class="notice">
-    <strong>9月ダイヤ要確認</strong>
-    祝日・繁忙期の追加運航可能性はありますが、公式発表までは確定扱いにしません。
+    <strong>暫定・要確認</strong>
+    暫定便は決定済み。9/23（水・祝）の三沢→丘珠 JAL2816 はシルバーウィーク臨時便次第のため、2026年9月ダイヤ公開後に確認します。
   </div>
 
-  <SectionTitle title="フライト候補" />
+  <SectionTitle title="暫定フライト候補" description="Hiro が調べた便をそのまま明記。第一候補と帰り候補はバッジで表示します。" />
   <section class="stack">
     {flights.map((group) => <FlightCard group={group} />)}
   </section>

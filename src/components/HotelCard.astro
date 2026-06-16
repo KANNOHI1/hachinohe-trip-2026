@@ -30,7 +30,10 @@ const { hotel } = Astro.props;
   <div class="meta">
     {hotel.tags.map((tag) => <span class="tag">{tag}</span>)}
   </div>
-  <a class="map-link" href={hotel.mapUrl} target="_blank" rel="noreferrer">Google Maps</a>
+  <div class="links">
+    <a class="map-link" href={hotel.mapUrl} target="_blank" rel="noreferrer">Google Maps</a>
+    {hotel.websiteUrl && <a class="map-link" href={hotel.websiteUrl} target="_blank" rel="noreferrer">公式サイト</a>}
+  </div>
 </article>
 
 <style>
@@ -62,9 +65,15 @@ const { hotel } = Astro.props;
     font-weight: 800;
   }
 
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
   .map-link {
     display: inline-flex;
-    margin-top: 1rem;
     color: var(--color-teal);
     font-weight: 900;
   }
