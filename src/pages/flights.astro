@@ -2,7 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import FlightCard from '../components/FlightCard.astro';
+import StatusBadge from '../components/StatusBadge.astro';
 import { flights } from '../data/trip';
+
+const isHanedaGroup = (title: string) => title.includes('羽田');
 ---
 
 <Layout title="Flights">
@@ -16,8 +19,123 @@ import { flights } from '../data/trip';
     暫定便は決定済み。9/23（水・祝）の三沢→丘珠 JAL2816 はシルバーウィーク臨時便次第のため、2026年9月ダイヤ公開後に確認します。
   </div>
 
-  <SectionTitle title="暫定フライト候補" description="Hiro が調べた便をそのまま明記。第一候補と帰り候補はバッジで表示します。" />
+  <SectionTitle title="暫定フライト候補" description="宏勇が調べた便をそのまま明記。第一候補と帰り候補はバッジで表示します。" />
   <section class="stack">
-    {flights.map((group) => <FlightCard group={group} />)}
+    {flights.map((group) => {
+      if (!isHanedaGroup(group.title)) {
+        return <FlightCard group={group} />;
+      }
+
+      const candidateFlights = group.flights.filter((flight) => flight.isPrimary);
+      const otherFlights = group.flights.filter((flight) => !flight.isPrimary);
+
+      return (
+        <article class="card card-pad flight-card">
+          <div class="split-title">
+            <h2>{group.title}</h2>
+            <StatusBadge status={group.status} />
+          </div>
+          <p>{group.note}</p>
+          <div class="flight-list">
+            {candidateFlights.map((flight) => (
+              <div class="flight-row primary">
+                <div>
+                  <strong>{flight.flightNo}</strong>
+                  <span>{flight.route}</span>
+                </div>
+                <div class="time">{flight.depart} → {flight.arrive}</div>
+                <span class="primary-label">{flight.primaryLabel ?? '候補'}</span>
+              </div>
+            ))}
+          </div>
+          <details class="other-flights">
+            <summary>その他の便を表示（羽田⇔三沢）</summary>
+            <div class="flight-list">
+              {otherFlights.map((flight) => (
+                <div class="flight-row">
+                  <div>
+                    <strong>{flight.flightNo}</strong>
+                    <span>{flight.route}</span>
+                  </div>
+                  <div class="time">{flight.depart} → {flight.arrive}</div>
+                </div>
+              ))}
+            </div>
+          </details>
+          <ul class="list">
+            {group.details.map((detail) => <li>{detail}</li>)}
+          </ul>
+        </article>
+      );
+    })}
   </section>
 </Layout>
+
+<style>
+  .flight-card h2 {
+    font-size: 1.28rem;
+  }
+
+  .flight-list {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1rem;
+  }
+
+  .flight-row {
+    display: grid;
+    gap: 0.4rem;
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    padding: 0.75rem;
+    background: #fbfaf6;
+  }
+
+  .flight-row.primary {
+    border-color: rgba(192, 71, 59, 0.42);
+    background: rgba(192, 71, 59, 0.07);
+  }
+
+  .flight-row strong {
+    display: block;
+    color: var(--color-ink);
+    font-size: 1rem;
+  }
+
+  .flight-row span {
+    color: var(--color-muted);
+    font-size: 0.88rem;
+  }
+
+  .time {
+    color: var(--color-teal);
+    font-weight: 900;
+  }
+
+  .primary-label {
+    justify-self: start;
+    border-radius: 999px;
+    padding: 0.16rem 0.48rem;
+    background: var(--color-accent);
+    color: #fff !important;
+    font-size: 0.74rem !important;
+    font-weight: 800;
+  }
+
+  .other-flights {
+    margin-top: 0.9rem;
+  }
+
+  .other-flights summary {
+    cursor: pointer;
+    color: var(--color-teal);
+    font-weight: 900;
+  }
+
+  @media (min-width: 720px) {
+    .flight-row {
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+    }
+  }
+</style>

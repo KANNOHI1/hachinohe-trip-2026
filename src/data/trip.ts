@@ -96,12 +96,38 @@ export const tripOverview: TripOverview = {
     '三沢空港IN / 三沢空港OUTを前提',
     'レンタカー前提',
     '宿は「思い出になる宿」を重視',
-    '客室露天風呂、リゾート、温泉、自然、こもれる宿を重視',
+    '客室露天風呂、リゾート、温泉、自然、こもれる宿？',
     '八戸の朝市、海岸、神社、横丁、海鮮も楽しみたい',
   ],
 };
 
 export const flights: FlightGroup[] = [
+  {
+    title: '札幌（丘珠）↔ 三沢',
+    status: 'check',
+    note:
+      'HAC運航。限定運航・1日1往復。暫定でこの便を置き、9/23（水・祝）の三沢→丘珠 JAL2816 のみ2026年9月ダイヤ公開後に要確認。',
+    details: [
+      'HAC運航',
+      '限定運航・1日1往復',
+      '丘珠→三沢: JAL2815 11:40→12:40（奈緒美 行き）',
+      '三沢→丘珠: JAL2816 13:10→14:05（奈緒美 帰り）',
+      '9/23（水・祝）の三沢→丘珠 JAL2816 のみ status: check（要確認）',
+      'シルバーウィーク臨時便次第、2026年9月ダイヤ公開後に確認',
+    ],
+    flights: [
+      { route: '丘珠→三沢', flightNo: 'JAL2815', depart: '11:40', arrive: '12:40', primaryLabel: '奈緒美 行き' },
+      {
+        route: '三沢→丘珠',
+        flightNo: 'JAL2816',
+        depart: '13:10',
+        arrive: '14:05',
+        status: 'check',
+        isPrimary: true,
+        primaryLabel: '奈緒美 帰り / 9/23 要確認',
+      },
+    ],
+  },
   {
     title: '東京（羽田）↔ 三沢',
     status: 'check',
@@ -110,8 +136,8 @@ export const flights: FlightGroup[] = [
     details: [
       '羽田→三沢: JAL153 08:15→09:30 / JAL155 10:45→12:05 / JAL157 14:55→16:10 / JAL159 17:05→18:30',
       '三沢→羽田: JAL152 10:10→11:35 / JAL154 12:50→14:15 / JAL156 16:50→18:15 / JAL158 19:10→20:35',
-      'Hiro 行き第一候補: JAL155 10:45→12:05',
-      'Hiro 帰り候補: JAL154 / JAL156 / JAL158',
+      '宏勇 行き第一候補: JAL155 10:45→12:05',
+      '宏勇 帰り候補: JAL156',
     ],
     flights: [
       { route: '羽田→三沢', flightNo: 'JAL153', depart: '08:15', arrive: '09:30' },
@@ -121,61 +147,21 @@ export const flights: FlightGroup[] = [
         depart: '10:45',
         arrive: '12:05',
         isPrimary: true,
-        primaryLabel: 'Hiro 行き第一候補',
+        primaryLabel: '宏勇 行き第一候補',
       },
       { route: '羽田→三沢', flightNo: 'JAL157', depart: '14:55', arrive: '16:10' },
       { route: '羽田→三沢', flightNo: 'JAL159', depart: '17:05', arrive: '18:30' },
       { route: '三沢→羽田', flightNo: 'JAL152', depart: '10:10', arrive: '11:35' },
-      {
-        route: '三沢→羽田',
-        flightNo: 'JAL154',
-        depart: '12:50',
-        arrive: '14:15',
-        isPrimary: true,
-        primaryLabel: 'Hiro 帰り候補',
-      },
+      { route: '三沢→羽田', flightNo: 'JAL154', depart: '12:50', arrive: '14:15' },
       {
         route: '三沢→羽田',
         flightNo: 'JAL156',
         depart: '16:50',
         arrive: '18:15',
         isPrimary: true,
-        primaryLabel: 'Hiro 帰り候補',
+        primaryLabel: '宏勇 帰り候補',
       },
-      {
-        route: '三沢→羽田',
-        flightNo: 'JAL158',
-        depart: '19:10',
-        arrive: '20:35',
-        isPrimary: true,
-        primaryLabel: 'Hiro 帰り候補',
-      },
-    ],
-  },
-  {
-    title: '札幌（丘珠）↔ 三沢',
-    status: 'check',
-    note:
-      'HAC運航。限定運航・1日1往復。暫定でこの便を置き、9/23（水・祝）の三沢→丘珠 JAL2816 のみ2026年9月ダイヤ公開後に要確認。',
-    details: [
-      'HAC運航',
-      '限定運航・1日1往復',
-      '丘珠→三沢: JAL2815 11:40→12:40（なおみ 行き）',
-      '三沢→丘珠: JAL2816 13:10→14:05（なおみ 帰り）',
-      '9/23（水・祝）の三沢→丘珠 JAL2816 のみ status: check（要確認）',
-      'シルバーウィーク臨時便次第、2026年9月ダイヤ公開後に確認',
-    ],
-    flights: [
-      { route: '丘珠→三沢', flightNo: 'JAL2815', depart: '11:40', arrive: '12:40', primaryLabel: 'なおみ 行き' },
-      {
-        route: '三沢→丘珠',
-        flightNo: 'JAL2816',
-        depart: '13:10',
-        arrive: '14:05',
-        status: 'check',
-        isPrimary: true,
-        primaryLabel: 'なおみ 帰り / 9/23 要確認',
-      },
+      { route: '三沢→羽田', flightNo: 'JAL158', depart: '19:10', arrive: '20:35' },
     ],
   },
 ];
@@ -457,7 +443,7 @@ export const itinerary: ItineraryDay[] = [
     title: 'OUT / 帰路',
     status: 'check',
     candidates: ['朝食', '軽めの観光', 'レンタカー返却', '三沢空港から帰路'],
-    notes: ['彼女の三沢→丘珠 JAL2816 が運航される場合、13:10発想定', 'その場合、最終日は午前中に無理をしすぎない', 'プラン(A/B/C)により宿が変わる'],
+    notes: ['奈緒美の三沢→丘珠 JAL2816 が運航される場合、13:10発想定', 'その場合、最終日は午前中に無理をしすぎない', 'プラン(A/B/C)により宿が変わる'],
   },
 ];
 

@@ -7,7 +7,6 @@ import { checklist, flights, plans, tripOverview } from '../data/trip';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5);
-const recommendedPlan = plans.find((plan) => plan.name === 'Plan C') ?? plans[0];
 ---
 
 <Layout hero>
@@ -27,8 +26,14 @@ const recommendedPlan = plans.find((plan) => plan.name === 'Plan C') ?? plans[0]
     <InfoCard title="基本方針" items={tripOverview.policy} />
   </section>
 
-  <SectionTitle title="現在のメインプラン" description="推しは Plan C「八戸拠点・凱旋型」。確定ではなく仮置きですが、初日と3泊目を八戸に寄せる前提で比較します。" />
-  <PlanCard plan={recommendedPlan} />
+  <SectionTitle title="プラン比較（A / B / C）" description="A/B/Cを横に並べて一目で比較。推しは Plan C（八戸拠点・凱旋型）。" />
+  <section class="plan-comparison" aria-label="プラン比較">
+    {plans.map((plan) => (
+      <div class:list={['plan-panel', plan.name === 'Plan C' && 'recommended']}>
+        <PlanCard plan={plan} />
+      </div>
+    ))}
+  </section>
 
   <SectionTitle title="重要な未確定事項" description="旅行の骨格に影響する確認項目だけを先に見える場所へ置いています。" />
   <section class="grid two">
@@ -44,3 +49,41 @@ const recommendedPlan = plans.find((plan) => plan.name === 'Plan C') ?? plans[0]
     <InfoCard title="レンタカー条件" body="三沢空港IN / 三沢空港OUTの貸出・返却時刻と料金を確認。" status="check" />
   </section>
 </Layout>
+
+<style>
+  .plan-comparison {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+
+  .plan-comparison > * {
+    flex: 0 0 82vw;
+    scroll-snap-align: start;
+  }
+
+  .plan-panel {
+    scroll-snap-align: start;
+  }
+
+  .plan-panel.recommended {
+    border-radius: var(--radius);
+    outline: 2px solid rgba(192, 71, 59, 0.45);
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 768px) {
+    .plan-comparison {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      overflow: visible;
+    }
+
+    .plan-comparison > * {
+      flex: none;
+    }
+  }
+</style>
