@@ -81,6 +81,7 @@ export type Place = {
   status: Status;
   tags: string[];
   mapUrl: string;
+  image?: string;
 };
 
 export type ItineraryDay = {
@@ -476,6 +477,7 @@ export const places: Place[] = [
     status: 'interest',
     tags: ['神社', '震災', '鳥居', '海', '個人的興味'],
     mapUrl: mapSearch('青森県八戸市鮫町大作平45'),
+    image: 'images/places/benten.jpg',
   },
   {
     name: '蕪嶋神社',
@@ -484,6 +486,7 @@ export const places: Place[] = [
     status: 'interest',
     tags: ['神社', '弁天', '宗像三女神', '漁業', 'ウミネコ'],
     mapUrl: mapSearch('青森県八戸市鮫町鮫56-2'),
+    image: 'images/places/kabushima.jpg',
   },
   {
     name: '種差海岸',
@@ -491,6 +494,7 @@ export const places: Place[] = [
     status: 'tentative',
     tags: ['海', '景色', 'ドライブ', '八戸'],
     mapUrl: mapSearch('種差海岸'),
+    image: 'images/places/tanesashi.jpg',
   },
   {
     name: 'みろく横丁・八戸横丁群',
@@ -498,6 +502,7 @@ export const places: Place[] = [
     status: 'tentative',
     tags: ['夜', '飲食', '横丁', '八戸中心街'],
     mapUrl: mapSearch('みろく横丁 八戸横丁群'),
+    image: 'images/places/miroku.jpg',
   },
 ];
 
