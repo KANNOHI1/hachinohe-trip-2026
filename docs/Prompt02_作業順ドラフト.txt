@@ -1,0 +1,57 @@
+作業順：
+
+1. プロジェクト作成
+   ・Astro + TypeScript で新規作成
+   ・GitHub Pages公開を前提に設定
+   ・不要な初期ファイルを整理
+
+2. データ設計
+   ・src/data/trip.ts を作成
+   ・tripOverview
+   ・flights
+   ・plans
+   ・hotels
+   ・markets
+   ・places
+   ・checklist
+   ・itinerary
+   に分けて定義
+
+3. UIコンポーネント作成
+   ・StatusBadge
+   ・SectionTitle
+   ・InfoCard
+   ・Timeline
+   ・FlightCard
+   ・HotelCard
+   ・ChecklistItem
+   ・PlanCard
+
+4. ページ作成
+   ・Home
+   ・Itinerary
+   ・Flights
+   ・Hotels
+   ・Food & Markets
+   ・Places
+   ・Plans
+   ・Checklist
+
+5. スマホ最適化
+   ・ナビゲーションをシンプルにする
+   ・カードUI中心にする
+   ・ステータスバッジを目立たせる
+   ・旅行中に片手で見やすくする
+
+6. GitHub Pages対応
+   ・astro.config.mjs を設定
+   ・base path をGitHubリポジトリ名に合わせる
+   ・npm run build が通ることを確認
+   ・READMEに公開手順を書く
+
+7. 最後に確認
+   ・npm run dev が動く
+   ・npm run build が通る
+   ・リンク切れがない
+   ・スマホ幅で崩れない
+   ・データを追加しやすい構造になっている
