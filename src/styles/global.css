@@ -135,7 +135,7 @@ select {
 .hero h1 {
   max-width: 12ch;
   margin: 0 0 0.8rem;
-  font-size: clamp(2.2rem, 11vw, 6rem);
+  font-size: clamp(2.2rem, 11vw, 5rem);
   line-height: 1.02;
   letter-spacing: 0;
   text-wrap: balance;
@@ -282,7 +282,7 @@ select {
 
 @media (min-width: 768px) {
   .hero {
-    min-height: clamp(24rem, 60vh, 38rem);
+    min-height: clamp(18rem, 42vh, 27rem);
   }
 
   .page-main {
@@ -290,7 +290,7 @@ select {
   }
 
   .hero-content {
-    padding: 7rem 1.4rem 4.8rem;
+    padding: 3rem 1.4rem 3rem;
   }
 
   .grid.two {
