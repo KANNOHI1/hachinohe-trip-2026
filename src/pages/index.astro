@@ -19,17 +19,17 @@ const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5
 
   <header class="page-header">
     <h1>旅の現在地</h1>
-    <p>{tripOverview.dateRange}。三沢空港IN / 三沢空港OUTを前提に、3泊目は八戸で締める静的しおりです。</p>
+    <p>{tripOverview.dateRange}。三沢空港IN / 三沢空港OUTを前提に、龍泉洞・長流寺・八戸を軸にした静的しおりです。</p>
   </header>
 
   <section class="grid two">
     <InfoCard title="基本方針" items={tripOverview.policy} />
   </section>
 
-  <SectionTitle title="プラン比較（A / B / C）" description="A/B/Cを横に並べて一目で比較。推しは Plan C（八戸拠点・凱旋型）。" />
+  <SectionTitle title="プラン比較（A / B / C）" description="本命は Plan A（八戸ベース＋龍泉洞泊）。B/Cは泊まり方違いの別案。" />
   <section class="plan-comparison" aria-label="プラン比較">
     {plans.map((plan) => (
-      <div class:list={['plan-panel', plan.name === 'Plan C' && 'recommended']}>
+      <div class:list={['plan-panel', plan.name === 'Plan A' && 'recommended']}>
         <PlanCard plan={plan} />
       </div>
     ))}
@@ -45,7 +45,7 @@ const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5
   <SectionTitle title="次に決めること" />
   <section class="grid three">
     <InfoCard title="9月ダイヤ確認" body="三沢↔丘珠と羽田↔三沢の2026年9月ダイヤを公式発表後に確認。" status="check" />
-    <InfoCard title="宿候補を絞る" body="Plan Cを軸に、八戸中心街と旅館系の組み合わせを決める。" status="tentative" />
+    <InfoCard title="宿候補を絞る" body="Plan Aを軸に、八戸中心街とホテル龍泉洞愛山の空室・料金を確認。" status="tentative" />
     <InfoCard title="レンタカー条件" body="三沢空港IN / 三沢空港OUTの貸出・返却時刻と料金を確認。" status="check" />
   </section>
 </Layout>
