@@ -115,7 +115,7 @@ select {
 .hero {
   position: relative;
   display: grid;
-  min-height: clamp(26rem, 78vh, 42rem);
+  min-height: clamp(15rem, 42svh, 22rem);
   place-items: end start;
   overflow: hidden;
   background-image:
@@ -129,13 +129,13 @@ select {
 .hero-content {
   width: min(100%, 1120px);
   margin: 0 auto;
-  padding: 6rem 1rem 4rem;
+  padding: 2.5rem 1rem 1.8rem;
 }
 
 .hero h1 {
   max-width: 12ch;
   margin: 0 0 0.8rem;
-  font-size: clamp(2.7rem, 14vw, 6rem);
+  font-size: clamp(2.2rem, 11vw, 6rem);
   line-height: 1.02;
   letter-spacing: 0;
   text-wrap: balance;
@@ -281,6 +281,10 @@ select {
 }
 
 @media (min-width: 768px) {
+  .hero {
+    min-height: clamp(24rem, 60vh, 38rem);
+  }
+
   .page-main {
     padding: 3rem 1.4rem 5rem;
   }
