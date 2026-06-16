@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import FlightCard from '../components/FlightCard.astro';
+import { flights } from '../data/trip';
+---
+
+<Layout title="Flights">
+  <header class="page-header">
+    <h1>Flights</h1>
+    <p>三沢空港での合流を第一候補にしたフライトメモ。9月ダイヤは未確定のため、現時点ではすべて要確認です。</p>
+  </header>
+
+  <div class="notice">
+    <strong>9月ダイヤ要確認</strong>
+    祝日・繁忙期の追加運航可能性はありますが、公式発表までは確定扱いにしません。
+  </div>
+
+  <SectionTitle title="フライト候補" />
+  <section class="stack">
+    {flights.map((group) => <FlightCard group={group} />)}
+  </section>
+</Layout>

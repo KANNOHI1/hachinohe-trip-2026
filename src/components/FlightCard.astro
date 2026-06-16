@@ -1,0 +1,94 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { FlightGroup } from '../data/trip';
+
+interface Props {
+  group: FlightGroup;
+}
+
+const { group } = Astro.props;
+---
+
+<article class="card card-pad flight-card">
+  <div class="split-title">
+    <h2>{group.title}</h2>
+    <StatusBadge status={group.status} />
+  </div>
+  <p>{group.note}</p>
+  <div class="flight-list">
+    {
+      group.flights.map((flight) => (
+        <div class:list={['flight-row', flight.isPrimary && 'primary']}>
+          <div>
+            <strong>{flight.flightNo}</strong>
+            <span>{flight.route}</span>
+          </div>
+          <div class="time">{flight.depart} → {flight.arrive}</div>
+          {flight.isPrimary && <span class="primary-label">{flight.primaryLabel ?? '第一候補'}</span>}
+        </div>
+      ))
+    }
+  </div>
+  <ul class="list">
+    {group.details.map((detail) => <li>{detail}</li>)}
+  </ul>
+</article>
+
+<style>
+  .flight-card h2 {
+    font-size: 1.28rem;
+  }
+
+  .flight-list {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1rem;
+  }
+
+  .flight-row {
+    display: grid;
+    gap: 0.4rem;
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    padding: 0.75rem;
+    background: #fbfaf6;
+  }
+
+  .flight-row.primary {
+    border-color: rgba(192, 71, 59, 0.42);
+    background: rgba(192, 71, 59, 0.07);
+  }
+
+  .flight-row strong {
+    display: block;
+    color: var(--color-ink);
+    font-size: 1rem;
+  }
+
+  .flight-row span {
+    color: var(--color-muted);
+    font-size: 0.88rem;
+  }
+
+  .time {
+    color: var(--color-teal);
+    font-weight: 900;
+  }
+
+  .primary-label {
+    justify-self: start;
+    border-radius: 999px;
+    padding: 0.16rem 0.48rem;
+    background: var(--color-accent);
+    color: #fff !important;
+    font-size: 0.74rem !important;
+    font-weight: 800;
+  }
+
+  @media (min-width: 720px) {
+    .flight-row {
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+    }
+  }
+</style>

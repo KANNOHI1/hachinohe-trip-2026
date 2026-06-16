@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import InfoCard from '../components/InfoCard.astro';
+import { markets, places } from '../data/trip';
+
+const yokocho = places.find((place) => place.name.includes('みろく'));
+---
+
+<Layout title="Food & Markets">
+  <header class="page-header">
+    <h1>Food & Markets</h1>
+    <p>八戸の朝市、八食センター、横丁を旅行中に見やすい形で整理しています。祝日営業は必ず確認します。</p>
+  </header>
+
+  <div class="notice">
+    <strong>営業日注意</strong>
+    9/20は13:00合流、9/23は水曜祝日のため、朝市と八食センターの営業カレンダー確認が必要です。
+  </div>
+
+  <SectionTitle title="朝市・市場" />
+  <section class="grid two">
+    {
+      markets.map((market) => (
+        <InfoCard
+          title={market.name}
+          status={market.status}
+          href={market.mapUrl}
+          items={[market.businessDays, market.hours, market.location, ...market.memo]}
+        />
+      ))
+    }
+  </section>
+
+  {yokocho && (
+    <>
+      <SectionTitle title="夜の候補" />
+      <InfoCard title={yokocho.name} status={yokocho.status} href={yokocho.mapUrl} items={yokocho.memo} />
+    </>
+  )}
+</Layout>

@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import InfoCard from '../components/InfoCard.astro';
+import { places } from '../data/trip';
+---
+
+<Layout title="Places">
+  <header class="page-header">
+    <h1>Places</h1>
+    <p>蕪嶋神社、弁天島の厳島神社、種差海岸を中心に、海岸線ドライブへ組み込みたい場所を整理しています。</p>
+  </header>
+
+  <div class="notice">
+    <strong>要確認</strong>
+    天候、宿の場所、最終日の空港に合わせて回る順番を調整します。
+  </div>
+
+  <SectionTitle title="行きたい場所" />
+  <section class="grid two">
+    {
+      places.map((place) => (
+        <InfoCard
+          title={place.name}
+          status={place.status}
+          href={place.mapUrl}
+          items={[...(place.address ? [place.address] : []), ...place.memo, ...place.tags.map((tag) => `#${tag}`)]}
+        />
+      ))
+    }
+  </section>
+</Layout>

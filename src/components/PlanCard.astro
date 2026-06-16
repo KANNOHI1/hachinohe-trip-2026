@@ -1,0 +1,54 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { Plan } from '../data/trip';
+
+interface Props {
+  plan: Plan;
+}
+
+const { plan } = Astro.props;
+---
+
+<article class="card card-pad plan-card">
+  <div class="split-title">
+    <div>
+      <h2>{plan.name}</h2>
+      <p class="route">{plan.route}</p>
+    </div>
+    <StatusBadge status={plan.status} />
+  </div>
+  <section>
+    <h3>概要</h3>
+    <ul class="list">{plan.summary.map((item) => <li>{item}</li>)}</ul>
+  </section>
+  <section>
+    <h3>メリット</h3>
+    <ul class="list">{plan.merits.map((item) => <li>{item}</li>)}</ul>
+  </section>
+  <section>
+    <h3>リスク</h3>
+    <ul class="list">{plan.risks.map((item) => <li>{item}</li>)}</ul>
+  </section>
+</article>
+
+<style>
+  .plan-card {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .plan-card h2 {
+    color: var(--color-teal);
+    font-size: 1.35rem;
+  }
+
+  .route {
+    margin-top: 0.25rem;
+    font-weight: 800;
+  }
+
+  .plan-card h3 {
+    color: var(--color-accent);
+    font-size: 0.94rem;
+  }
+</style>

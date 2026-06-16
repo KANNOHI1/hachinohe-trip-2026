@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  hero?: boolean;
+}
+
+const {
+  title = '八戸・三沢旅行 2026',
+  description = '2026年9月の八戸・三沢旅行を共有する旅のしおりサイト。',
+  hero = false,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const path = Astro.url.pathname.replace(/\/$/, '');
+const navItems = [
+  { label: 'Home', href: '' },
+  { label: 'Itinerary', href: 'itinerary' },
+  { label: 'Flights', href: 'flights' },
+  { label: 'Hotels', href: 'hotels' },
+  { label: 'Food', href: 'food' },
+  { label: 'Places', href: 'places' },
+  { label: 'Plans', href: 'plans' },
+  { label: 'Checklist', href: 'checklist' },
+];
+
+const withBase = (href: string) => `${base}${href}`;
+const pageTitle = title === '八戸・三沢旅行 2026' ? title : `${title} | 八戸・三沢旅行 2026`;
+const ogpImage = 'https://kannohi1.github.io/hachinohe-trip-2026/ogp.png';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogpImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogpImage} />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <link rel="icon" href={withBase('favicon.ico')} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <div class="nav-inner">
+          <a class="brand" href={withBase('')}>旅のしおり</a>
+          <div class="nav-links">
+            {
+              navItems.map((item) => {
+                const itemPath = withBase(item.href).replace(/\/$/, '');
+                const isActive = item.href === '' ? path === base.replace(/\/$/, '') : path === itemPath;
+                return (
+                  <a class="nav-link" href={withBase(item.href)} aria-current={isActive ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                );
+              })
+            }
+          </div>
+        </div>
+      </nav>
+      <slot name="hero" />
+      <main class:list={['page-main', hero && 'with-hero']}>
+        <slot />
+      </main>
+      <footer class="site-footer">八戸・三沢旅行 2026 / 静的MVP</footer>
+    </div>
+  </body>
+</html>

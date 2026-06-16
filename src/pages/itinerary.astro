@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Timeline from '../components/Timeline.astro';
+import PlanCard from '../components/PlanCard.astro';
+import { itinerary, plans } from '../data/trip';
+---
+
+<Layout title="Itinerary">
+  <header class="page-header">
+    <h1>Itinerary</h1>
+    <p>9/20〜9/23 の日別タイムライン。未定部分は候補として残し、Base / Plan B / Plan C の切り替えが分かるようにしています。</p>
+  </header>
+
+  <div class="notice">
+    <strong>要確認</strong>
+    9/23の三沢→丘珠 JAL2816 が運航されるかで、最終日の空港と午前中の使い方が変わります。
+  </div>
+
+  <SectionTitle title="日別タイムライン" />
+  <Timeline days={itinerary} />
+
+  <SectionTitle title="プラン切り替えメモ" description="Baseを軸にし、帰路条件が崩れた場合だけPlan B / Plan Cへ寄せます。" />
+  <section class="grid three">
+    {plans.map((plan) => <PlanCard plan={plan} />)}
+  </section>
+</Layout>

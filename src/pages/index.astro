@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import InfoCard from '../components/InfoCard.astro';
+import PlanCard from '../components/PlanCard.astro';
+import { checklist, flights, plans, tripOverview } from '../data/trip';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5);
+---
+
+<Layout hero>
+  <section class="hero" style={`--hero-image: url('${base}hero.png')`} slot="hero">
+    <div class="hero-content">
+      <h1>{tripOverview.title}</h1>
+      <p>{tripOverview.dateLabel}</p>
+    </div>
+  </section>
+
+  <header class="page-header">
+    <h1>旅の現在地</h1>
+    <p>{tripOverview.dateRange}。三沢空港合流を第一候補にしつつ、9月ダイヤと宿を確認しながら固める静的しおりです。</p>
+  </header>
+
+  <section class="grid two">
+    <InfoCard title="基本方針" items={tripOverview.policy} />
+    <InfoCard title="参加者" items={tripOverview.participants.map((person) => `${person.name}：${person.from}`)} />
+  </section>
+
+  <SectionTitle title="現在のメインプラン" description="三沢空港IN / 三沢空港OUTを第一候補にし、帰路の丘珠便が出ない場合は青森空港OUTへ切り替えます。" />
+  <PlanCard plan={plans[0]} />
+
+  <SectionTitle title="重要な未確定事項" description="旅行の骨格に影響する確認項目だけを先に見える場所へ置いています。" />
+  <section class="grid two">
+    {flights.map((group) => <InfoCard title={group.title} body={group.note} status={group.status} />)}
+    {keyChecks.map((item) => <InfoCard title={item.title} body={item.note} status={item.status} />)}
+  </section>
+
+  <SectionTitle title="次に決めること" />
+  <section class="grid three">
+    <InfoCard title="9月ダイヤ確認" body="三沢↔丘珠と羽田↔三沢の2026年9月ダイヤを公式発表後に確認。" status="check" />
+    <InfoCard title="宿候補を絞る" body="青森屋、奥入瀬、蔦温泉、八戸中心街のどこを旅の軸にするか決める。" status="tentative" />
+    <InfoCard title="レンタカー条件" body="青森空港OUTになった場合の乗り捨て可否と料金を確認。" status="check" />
+  </section>
+</Layout>

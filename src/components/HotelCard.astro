@@ -1,0 +1,71 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { Hotel } from '../data/trip';
+
+interface Props {
+  hotel: Hotel;
+}
+
+const { hotel } = Astro.props;
+---
+
+<article class="card card-pad hotel-card">
+  <div class="split-title">
+    <h2>{hotel.name}</h2>
+    <StatusBadge status={hotel.status} />
+  </div>
+  {hotel.address && <p class="address">{hotel.address}</p>}
+  <div class="distance">
+    <span>{hotel.airportDistance}</span>
+    <span>{hotel.hachinoheDistance}</span>
+  </div>
+  {hotel.price && (
+    <ul class="price-list">
+      {hotel.price.map((price) => <li>{price}</li>)}
+    </ul>
+  )}
+  <ul class="list">
+    {hotel.memo.map((item) => <li>{item}</li>)}
+  </ul>
+  <div class="meta">
+    {hotel.tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+  <a class="map-link" href={hotel.mapUrl} target="_blank" rel="noreferrer">Google Maps</a>
+</article>
+
+<style>
+  .hotel-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .address {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+  }
+
+  .distance,
+  .price-list {
+    display: grid;
+    gap: 0.4rem;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .distance span,
+  .price-list li {
+    border-radius: 10px;
+    padding: 0.46rem 0.58rem;
+    background: rgba(31, 95, 91, 0.08);
+    color: var(--color-teal);
+    font-size: 0.88rem;
+    font-weight: 800;
+  }
+
+  .map-link {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: var(--color-teal);
+    font-weight: 900;
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import type { Status } from '../data/trip';
+
+interface Props {
+  status: Status;
+}
+
+const { status } = Astro.props;
+const labels: Record<Status, string> = {
+  confirmed: '確定',
+  tentative: '仮',
+  check: '要確認',
+  unavailable: '空室なし',
+  interest: '興味',
+};
+---
+
+<span class={`status status-${status}`}>{labels[status]}</span>
+
+<style>
+  .status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.8rem;
+    border-radius: 999px;
+    padding: 0.18rem 0.62rem;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .status-confirmed {
+    background: #2f7d52;
+  }
+
+  .status-tentative {
+    background: #b87922;
+  }
+
+  .status-check {
+    background: #c0473b;
+  }
+
+  .status-unavailable {
+    background: #7a8188;
+  }
+
+  .status-interest {
+    background: #7652a5;
+  }
+</style>

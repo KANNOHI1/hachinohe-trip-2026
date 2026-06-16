@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import PlanCard from '../components/PlanCard.astro';
+import { plans } from '../data/trip';
+---
+
+<Layout title="Plans">
+  <header class="page-header">
+    <h1>Plans</h1>
+    <p>三沢空港合流を最もきれいな第一候補にしつつ、帰路の不確実性に備えて代替案を持ちます。</p>
+  </header>
+
+  <div class="notice">
+    <strong>判断ポイント</strong>
+    9/23の三沢→丘珠便が運航されるか、青森空港OUT時のレンタカー乗り捨て条件がどうなるかを確認します。
+  </div>
+
+  <SectionTitle title="基本プラン" />
+  <section class="grid three">
+    {plans.map((plan) => <PlanCard plan={plan} />)}
+  </section>
+</Layout>

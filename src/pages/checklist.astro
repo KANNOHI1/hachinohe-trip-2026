@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import ChecklistItem from '../components/ChecklistItem.astro';
+import { checklist } from '../data/trip';
+---
+
+<Layout title="Checklist">
+  <header class="page-header">
+    <h1>Checklist</h1>
+    <p>航空券、宿、レンタカー、営業日、地図、予算をあとから更新しやすいチェックリストにしています。</p>
+  </header>
+
+  <div class="notice">
+    <strong>要確認</strong>
+    公式発表・予約サイト・営業カレンダーで確認してから確定へ移します。
+  </div>
+
+  <SectionTitle title="次に確認すること" />
+  <section class="stack">
+    {checklist.map((item) => <ChecklistItem item={item} />)}
+  </section>
+</Layout>

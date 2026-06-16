@@ -1,0 +1,46 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { Status } from '../data/trip';
+
+interface Props {
+  title: string;
+  body?: string;
+  items?: string[];
+  status?: Status;
+  href?: string;
+  hrefLabel?: string;
+}
+
+const { title, body, items = [], status, href, hrefLabel = '地図を見る' } = Astro.props;
+---
+
+<article class="card card-pad info-card">
+  <div class="split-title">
+    <h3>{title}</h3>
+    {status && <StatusBadge status={status} />}
+  </div>
+  {body && <p>{body}</p>}
+  {
+    items.length > 0 && (
+      <ul class="list">
+        {items.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    )
+  }
+  {href && <a class="text-link" href={href} target="_blank" rel="noreferrer">{hrefLabel}</a>}
+</article>
+
+<style>
+  .info-card h3 {
+    font-size: 1.08rem;
+  }
+
+  .text-link {
+    display: inline-flex;
+    margin-top: 0.9rem;
+    color: var(--color-teal);
+    font-weight: 800;
+  }
+</style>

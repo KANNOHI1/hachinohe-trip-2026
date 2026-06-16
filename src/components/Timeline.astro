@@ -1,0 +1,105 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { ItineraryDay } from '../data/trip';
+
+interface Props {
+  days: ItineraryDay[];
+}
+
+const { days } = Astro.props;
+---
+
+<div class="timeline">
+  {
+    days.map((day) => (
+      <article class="timeline-item">
+        <div class="marker" aria-hidden="true"></div>
+        <div class="card card-pad">
+          <div class="split-title">
+            <div>
+              <p class="date">{day.date} / {day.day}</p>
+              <h2>{day.title}</h2>
+            </div>
+            <StatusBadge status={day.status} />
+          </div>
+          {day.schedule && (
+            <>
+              <h3>予定</h3>
+              <ul class="list">{day.schedule.map((item) => <li>{item}</li>)}</ul>
+            </>
+          )}
+          <h3>候補</h3>
+          <ul class="list">{day.candidates.map((item) => <li>{item}</li>)}</ul>
+          {day.notes && (
+            <div class="notice">
+              <strong>注意</strong>
+              {day.notes.map((note) => <p>{note}</p>)}
+            </div>
+          )}
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .timeline::before {
+    position: absolute;
+    top: 0.6rem;
+    bottom: 0.6rem;
+    left: 0.55rem;
+    width: 2px;
+    background: rgba(31, 95, 91, 0.22);
+    content: "";
+  }
+
+  .timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2rem 1fr;
+    gap: 0.8rem;
+  }
+
+  .marker {
+    position: relative;
+    z-index: 1;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 1rem;
+    border: 3px solid var(--color-bg);
+    border-radius: 50%;
+    background: var(--color-teal);
+    box-shadow: 0 0 0 2px rgba(31, 95, 91, 0.28);
+  }
+
+  .date {
+    margin: 0 0 0.2rem;
+    color: var(--color-accent);
+    font-size: 0.86rem;
+    font-weight: 900;
+  }
+
+  .timeline h2 {
+    font-size: 1.16rem;
+  }
+
+  .timeline h3 {
+    margin: 1rem 0 0;
+    color: var(--color-teal);
+    font-size: 0.94rem;
+  }
+
+  .notice {
+    margin-top: 1rem;
+  }
+
+  .notice p {
+    margin: 0.2rem 0 0;
+  }
+</style>

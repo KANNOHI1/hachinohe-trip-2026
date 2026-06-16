@@ -31,3 +31,8 @@ Thumbs.db
 # claude / codex session logs (keep out of public repo)
 claude_logs/
 codex_logs/
+
+# playwright / preview artifacts
+.playwright-mcp/
+*-mobile.jpeg
+*-desktop.jpeg

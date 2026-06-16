@@ -1,0 +1,45 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { ChecklistItem as ChecklistItemType } from '../data/trip';
+
+interface Props {
+  item: ChecklistItemType;
+}
+
+const { item } = Astro.props;
+---
+
+<article class="card card-pad checklist-item">
+  <div class="check-icon" aria-hidden="true">{item.done ? '✓' : ''}</div>
+  <div>
+    <div class="split-title">
+      <h3>{item.title}</h3>
+      <StatusBadge status={item.status} />
+    </div>
+    <p>{item.note}</p>
+  </div>
+</article>
+
+<style>
+  .checklist-item {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.8rem;
+    align-items: start;
+  }
+
+  .check-icon {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--color-sage);
+    border-radius: 50%;
+    color: var(--color-sage);
+    font-weight: 900;
+    line-height: 1.75rem;
+    text-align: center;
+  }
+
+  .checklist-item h3 {
+    font-size: 1rem;
+  }
+</style>
