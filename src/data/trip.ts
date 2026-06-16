@@ -25,6 +25,23 @@ export type FlightGroup = {
   flights: Flight[];
 };
 
+export type ArrivalTrack = {
+  person: string;
+  direction: string;
+  origin: string;
+  steps: string[];
+};
+
+export type ArrivalJourney = {
+  date: string;
+  tracks: ArrivalTrack[];
+  merge: {
+    time: string;
+    place: string;
+    steps: string[];
+  };
+};
+
 export type Plan = {
   name: string;
   route: string;
@@ -99,6 +116,29 @@ export const tripOverview: TripOverview = {
     '客室露天風呂、リゾート、温泉、自然、こもれる宿？',
     '八戸の朝市、海岸、神社、横丁、海鮮も楽しみたい',
   ],
+};
+
+export const arrivalJourney: ArrivalJourney = {
+  date: '9/20（日）',
+  tracks: [
+    {
+      person: '奈緒美',
+      direction: '札幌方面',
+      origin: '稲積公園駅',
+      steps: ['稲積公園駅 出発', '丘珠空港', 'JAL2815 丘珠 11:40 → 三沢 12:40', '三沢空港着'],
+    },
+    {
+      person: '宏勇',
+      direction: '東京方面',
+      origin: '東雲駅（江東区）',
+      steps: ['東雲駅（江東区）出発', '羽田空港', 'JAL155 羽田 10:45 → 三沢 12:05', '三沢空港着'],
+    },
+  ],
+  merge: {
+    time: '13:00',
+    place: '三沢空港で合流',
+    steps: ['レンタカー受取', '旅へ'],
+  },
 };
 
 export const flights: FlightGroup[] = [
