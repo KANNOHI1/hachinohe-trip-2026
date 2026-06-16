@@ -214,7 +214,7 @@ export const plans: Plan[] = [
     route: '八戸ベース＋龍泉洞泊（本命）',
     summary: [
       '1泊目=八戸中心街',
-      '2泊目=ホテル龍泉洞愛山（龍泉洞泊・温泉「炭の湯」・三陸2食）',
+      '2泊目=ホテル龍泉洞愛山（確定・龍泉洞泊・温泉「炭の湯」・三陸2食）',
       '3泊目＝八戸中心街',
       'Day1 三沢着→八戸（海・種差海岸・横丁でゆるく）',
       'Day2 八戸→南下→龍泉洞→愛山泊',
@@ -222,7 +222,7 @@ export const plans: Plan[] = [
       'Day4 長流寺墓参→三沢OUT',
     ],
     merits: ['龍泉洞を泊まりで堪能（日帰り往復の運転を回避）', '前後の八戸を楽しめる', '凱旋の締めも八戸'],
-    risks: ['中日に南北移動', '愛山の 9/21 空室は要確認'],
+    risks: ['中日に南北移動', 'ホテル龍泉洞愛山 9/21 の実予約を取る'],
     status: 'tentative',
   },
   {
@@ -381,7 +381,7 @@ export const hotels: Hotel[] = [
     price: ['1泊2名 朝食付 約14,960円', '2食付 約20,860円〜（目安・要確認）'],
     airportDistance: '三沢空港から約2h15(要確認)',
     hachinoheDistance: '八戸から三陸道で約1h40',
-    status: 'tentative',
+    status: 'confirmed',
     tags: ['龍泉洞', '温泉', '炭の湯', '三陸', '岩泉'],
     mapUrl: mapSearch('岩手県下閉伊郡岩泉町岩泉字松橋 ホテル龍泉洞愛山'),
     websiteUrl: 'https://www.aizan.co.jp/',
@@ -554,8 +554,8 @@ export const checklist: ChecklistItem[] = [
     done: false,
   },
   {
-    title: 'ホテル龍泉洞愛山 予約確認',
-    note: '希望日（Plan A=9/21・Plan B=9/20）の空室・料金を確認。2026/9はまだ予約窓口前の可能性。aizan.co.jp / 0194-22-4111',
+    title: 'ホテル龍泉洞愛山(9/21) の予約を取る',
+    note: 'Plan Aの2泊目宿はホテル龍泉洞愛山で確定。9/21泊の実予約・料金・食事条件を確認して予約する。aizan.co.jp / 0194-22-4111',
     status: 'check',
     done: false,
   },
