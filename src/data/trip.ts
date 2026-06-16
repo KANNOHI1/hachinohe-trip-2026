@@ -383,6 +383,22 @@ export const markets: Market[] = [
 
 export const places: Place[] = [
   {
+    name: '長流寺（ちょうりゅうじ）',
+    address: '青森県八戸市吹上1-4-18',
+    memo: [
+      '奈緒美の父の墓所',
+      '命日9/23（秋分の日・彼岸の中日）に墓参',
+      '墓参の目安時間 9:00〜17:00（ポータル掲載値・要電話確認）',
+      '本八戸駅から車約5分、三沢空港から車約35〜40分（24.5km）',
+      '曹洞宗',
+      '法要を依頼する場合は事前予約必須、駐車場有無は要確認',
+      'TEL 0178-43-4468',
+    ],
+    status: 'confirmed',
+    tags: ['八戸', '墓参', '命日9/23', '家族', '曹洞宗'],
+    mapUrl: mapSearch('青森県八戸市吹上1-4-18'),
+  },
+  {
     name: '弁天島の厳島神社',
     address: '青森県八戸市鮫町大作平45',
     memo: ['津波で鳥居が流失', '鳥居の一部が約7,000km離れたアメリカ西海岸に漂着', '返還された鳥居の一部を使って再建された', '個人的興味が高い'],
@@ -450,6 +466,12 @@ export const itinerary: ItineraryDay[] = [
 export const checklist: ChecklistItem[] = [
   { title: '航空券確認', note: '2026年9月ダイヤ公開後、全便を最終確認する', status: 'check', done: false },
   { title: '9/23 丘珠便確認', note: '三沢→丘珠 JAL2816 の運航有無を確認する', status: 'check', done: false },
+  {
+    title: '長流寺の墓参・法要確認',
+    note: '0178-43-4468 へ電話。命日9/23（彼岸中日で混雑）の墓参可否・法要の事前予約・お花/手桶/線香・駐車場・参拝可能時間を確認。フライト約1時間40分前には切り上げる。',
+    status: 'check',
+    done: false,
+  },
   { title: '宿予約', note: '思い出になる宿を軸に候補を絞る', status: 'tentative', done: false },
   { title: 'レンタカー予約', note: '三沢空港IN / 三沢空港OUTの貸出・返却時刻と料金を確認する', status: 'check', done: false },
   { title: '朝市営業確認', note: '祝日の営業状況を各市場で確認する', status: 'check', done: false },
