@@ -2,17 +2,15 @@
 
 ## 現在地
 
-プロジェクト始動。git 初期化 + public リポジトリ作成 + 初期 push 完了（README/.gitignore/docs 退避のみ）。Astro 本体はまだ未 scaffold。次は Astro+TS プロジェクトの作成とデータ設計（`src/data/trip.ts`）。
+**MVP 公開済み。** Astro+TS の旅のしおりサイト8ページを Codex 実装→GitHub Actions(withastro/action, Node22)で Pages 自動デプロイ。ライブ実機確認OK。公開URL: https://kannohi1.github.io/hachinohe-trip-2026/ 。サイトタイトルは「八戸・三沢旅行 2026」(案B)、共有OGPサムネは「なおみちゃん八戸凱旋トリップ2026」(案A, public/ogp.png)。ヒーロー画像 public/hero.png(Gemini生成)。
 最新リモート同期: 2026-06-16 — origin/main = HEAD (ahead 0 / behind 0)
 
 ## 次にやること
 
-- Astro + TypeScript プロジェクトを scaffold（GitHub Pages 前提、base path = `/hachinohe-trip-2026/`）
-- `src/data/trip.ts` にデータ定義（tripOverview / flights / plans / hotels / markets / places / checklist / itinerary）
-- UIコンポーネント（StatusBadge / SectionTitle / InfoCard / Timeline / FlightCard / HotelCard / ChecklistItem / PlanCard）
-- 8ページ作成（Home / Itinerary / Flights / Hotels / Food&Markets / Places / Plans / Checklist）
-- GitHub Actions による Pages デプロイ設定（Astro 公式 action）
-- 実装は Codex に委譲
+- 彼女レビュー後のフィードバック反映
+- データ確定作業（9月JALダイヤ確認、9/23丘珠便、宿予約、レンタカー乗り捨て可否、朝市/八食センター営業）→ trip.ts の status を check→confirmed へ更新
+- 写真・予約リンク・メモの追加（実装は Codex 委譲）
+- vite optimizeDeps.disabled の警告解消（任意・cosmetic）
 
 ## 未解決・保留
 
@@ -29,8 +27,9 @@
 
 ## ハマりパターン
 
-- （なし）
+- **withastro/action@v3 の既定 Node は 20。Astro 6 は Node>=22.12 必須**で CI build が `Node.js v20 is not supported by Astro!` で落ちる。→ `with: node-version: 22` を明示して解決。
 
 ## 更新履歴
 
 - 2026-06-16: プロジェクト始動。git 初期化・public リポジトリ作成・初期 push 完了 [Claude]
+- 2026-06-16: MVP実装〜公開完了。Geminiでヒーロー画像生成→Pillowでタイトル入りサムネ合成、Codexで8ページ実装、Pages自動デプロイ（Node22修正含む）、ライブ確認OK [Claude]
