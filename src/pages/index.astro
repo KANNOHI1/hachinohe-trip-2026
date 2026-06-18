@@ -16,19 +16,21 @@ const dayDates: Record<string, string> = {
 
 const plan = plans[0];
 
+const stayLines = plan.summary.filter((line) => line.includes('泊目') && !/^Day\s*\d/.test(line));
+
 const planA = {
-  plan,
-  stayLines: plan.summary.filter((line) => line.includes('泊目') && !/^Day\s*\d/.test(line)),
   dayLines: plan.summary
     .filter((line) => /^Day\s*\d/.test(line))
-    .map((line) => {
+    .map((line, index) => {
       const match = line.match(/^(Day\s*(\d))\s+(.+)$/);
       const day = match ? `Day ${match[2]}` : line;
+      const stayLine = stayLines[index];
       return {
         day,
         date: dayDates[day] ?? '',
         body: match ? match[3] : line,
         status: day === 'Day 4' ? 'check' : plan.status,
+        stay: stayLine ? stayLine.replace(/^\d+泊目[=＝]/, '') : null,
       };
     }),
 };
@@ -51,7 +53,7 @@ const planA = {
     <InfoCard title="基本方針" items={tripOverview.policy} />
   </section>
 
-  <SectionTitle title="旅の始まり — 9/20 三沢で合流" description="2本の移動タイムラインが、13:00に三沢空港で1本になります。" />
+  <SectionTitle title="旅の始まり — 9/20 三沢で合流" description="2本の移動が13:00に三沢空港で1本に。そのまま3泊4日の旅へ。" />
   <section class="arrival-story" aria-label="三沢空港での合流タイムライン">
     <div class="arrival-tracks">
       {arrivalJourney.tracks.map((track) => (
@@ -75,42 +77,19 @@ const planA = {
       <strong>{arrivalJourney.merge.place}</strong>
       <p>{arrivalJourney.merge.steps.join(' → ')}</p>
     </div>
-  </section>
 
-  <SectionTitle title="日程（Plan A・確定）" description="Plan Aで確定。龍泉洞泊を中日に、前後を八戸でゆっくり楽しみます。" />
-  <section class="plan-tabs" aria-label="Plan A の日程">
-    <div class="tab-panels">
-      <article>
-        <header class="plan-heading">
-          <p>{planA.plan.name}</p>
-          <h2>{planA.plan.route}</h2>
-          <span class={`status-badge ${planA.plan.status}`}>
-            {planA.plan.status === 'confirmed' ? '確定' : planA.plan.status === 'tentative' ? '未確定' : '要確認'}
-          </span>
-        </header>
-
-        <div class="stay-summary" aria-label={`${planA.plan.name}の宿`}>
-          {planA.stayLines.map((line) => (
-            <span>{line}</span>
-          ))}
-        </div>
-
-        <ol class="day-timeline">
-          {planA.dayLines.map((day) => (
-            <li>
-              <div class="day-marker">
-                <strong>{day.day}</strong>
-                <span>{day.date}</span>
-              </div>
-              <div class="day-card">
-                <span class={`status-badge ${day.status}`}>{day.status === 'check' ? '要確認' : day.status === 'confirmed' ? '確定' : '未確定'}</span>
-                <p>{day.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </article>
-    </div>
+    <ol class="day-timeline">
+      {planA.dayLines.map((day) => (
+        <li>
+          <div class="day-marker"><strong>{day.day}</strong><span>{day.date}</span></div>
+          <div class="day-card">
+            <span class={`status-badge ${day.status}`}>{day.status === 'check' ? '要確認' : day.status === 'confirmed' ? '確定' : '未確定'}</span>
+            <p>{day.body}</p>
+            {day.stay && <p class="day-stay">宿: {day.stay}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
   </section>
 
   <SectionTitle title="重要な未確定事項" description="旅行の骨格に影響する確認項目だけを先に見える場所へ置いています。" />
@@ -123,7 +102,7 @@ const planA = {
   <SectionTitle title="次に決めること" />
   <section class="grid three">
     <InfoCard title="9月ダイヤ確認" body="三沢↔丘珠と羽田↔三沢の2026年9月ダイヤを公式発表後に確認。" status="check" />
-    <InfoCard title="宿候補を絞る" body="Plan Aを軸に、八戸中心街とホテル龍泉洞愛山の空室・料金を確認。" status="tentative" />
+    <InfoCard title="宿候補を絞る" body="八戸中心街とホテル龍泉洞愛山の空室・料金を確認。" status="tentative" />
     <InfoCard title="レンタカー条件" body="三沢空港IN / 三沢空港OUTの貸出・返却時刻と料金を確認。" status="check" />
   </section>
 </Layout>
@@ -152,15 +131,13 @@ const planA = {
     margin-bottom: 1rem;
   }
 
-  .arrival-track header p,
-  .plan-heading p {
+  .arrival-track header p {
     color: var(--color-muted);
     font-size: 0.85rem;
     margin: 0;
   }
 
-  .arrival-track h2,
-  .plan-heading h2 {
+  .arrival-track h2 {
     font-size: 1.35rem;
     margin: 0;
   }
@@ -222,40 +199,10 @@ const planA = {
     font-weight: 700;
   }
 
-  .plan-tabs {
-    display: grid;
-    gap: 1rem;
-    position: relative;
-  }
-
-  .plan-heading,
   .day-card {
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     background: var(--color-surface);
-  }
-
-  .plan-heading {
-    display: grid;
-    gap: 0.35rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-  }
-
-  .stay-summary {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.1rem;
-  }
-
-  .stay-summary span {
-    background: rgba(192, 71, 59, 0.08);
-    border: 1px solid rgba(192, 71, 59, 0.22);
-    border-radius: 999px;
-    color: var(--color-text);
-    font-size: 0.85rem;
-    padding: 0.4rem 0.65rem;
   }
 
   .day-timeline {
@@ -285,6 +232,12 @@ const planA = {
   }
 
   .day-card p {
+    margin: 0;
+  }
+
+  .day-stay {
+    color: var(--color-muted);
+    font-size: 0.85rem;
     margin: 0;
   }
 
