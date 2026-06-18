@@ -2,8 +2,8 @@
 
 ## 現在地
 
-**Plan A で確定・サイトを1プラン化した**（B/C 関連は全削除）。trip.ts から Plan B/C・aomoriFallbackNote・dead な itinerary 配列/ItineraryDay 型・旧青森/十和田案の宿5件（奥入瀬/蔦温泉/十和田×2/酸ヶ湯）を削除。宿は今年＝愛山(confirmed)＋八戸中心街の2件、来年＝青森屋＋ミチル種差を `wishlistHotels`（Hotelsページ「来年行きたい宿」セクション）に控えめに残した。Home は A/B/C タブUI撤去→Plan A 単独日程表示。Plans ページ/PlanCard/Timeline は削除、nav から Plans 除去。基本方針(policy)を4点に刷新（三沢IN/OUT・三沢合流・レンタカー前提・Day1八戸/Day2龍泉洞/Day3八戸）。長流寺チェックリストの失礼文言「フライト約1時間40分前には切り上げる」を削除→「帰り便JAL154(12:50発)に向け空港まで約40分＋返却/保安検査を見込み遅くとも11:00頃に長流寺出発」へ逆算修正。`npm run build` green（6ページ）。**未push（ローカルのみ）**。次は八戸の宿・航空券・残画像・アンケート。公開URL: https://kannohi1.github.io/hachinohe-trip-2026/
-最新リモート同期: 2026-06-18 15:55 JST — ローカル変更ありpush未実施（要 git push で Pages 反映）
+**Plan A で確定・サイトを1プラン化した**（B/C 関連は全削除）。trip.ts から Plan B/C・aomoriFallbackNote・dead な itinerary 配列/ItineraryDay 型・旧青森/十和田案の宿5件（奥入瀬/蔦温泉/十和田×2/酸ヶ湯）を削除。宿は今年＝愛山(confirmed)＋八戸中心街の2件、来年＝青森屋＋ミチル種差を `wishlistHotels`（Hotelsページ「来年行きたい宿」セクション）に控えめに残した。Home は A/B/C タブUI撤去→Plan A 単独日程表示。Plans ページ/PlanCard/Timeline は削除、nav から Plans 除去。基本方針(policy)を4点に刷新（三沢IN/OUT・三沢合流・レンタカー前提・Day1八戸/Day2龍泉洞/Day3八戸）。長流寺チェックリストの失礼文言「フライト約1時間40分前には切り上げる」を削除→「帰り便JAL154(12:50発)に向け空港まで約40分＋返却/保安検査を見込み遅くとも11:00頃に長流寺出発」へ逆算修正。`npm run build` green（6ページ）。**commit & push 済**（d2cb8f7・Pages 自動再ビルド）。次は八戸の宿・航空券・残画像・アンケート。公開URL: https://kannohi1.github.io/hachinohe-trip-2026/
+最新リモート同期: 2026-06-18 16:00 JST — origin/main = HEAD (ahead 0 / behind 0)
 
 ## 次にやること
 
