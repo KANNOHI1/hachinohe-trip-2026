@@ -62,6 +62,7 @@ export type Hotel = {
   tags: string[];
   mapUrl: string;
   websiteUrl?: string;
+  image?: string;
 };
 
 export type Market = {
@@ -226,6 +227,7 @@ export const hotels: Hotel[] = [
     tags: ['龍泉洞', '温泉', '炭の湯', '三陸', '岩泉'],
     mapUrl: mapSearch('岩手県下閉伊郡岩泉町岩泉字松橋 ホテル龍泉洞愛山'),
     websiteUrl: 'https://www.aizan.co.jp/',
+    image: 'images/places/aizan_thumb.jpg',
   },
   {
     name: '八戸中心街（宿未定）',
@@ -257,6 +259,7 @@ export const wishlistHotels: Hotel[] = [
     status: 'interest',
     tags: ['三沢', '空港近い', '温泉', '青森文化', '来年候補'],
     mapUrl: mapSearch('青森県三沢市字古間木山56'),
+    image: 'images/places/aomoriya_thumb.jpg',
   },
   {
     name: 'ミチル種差｜michill TANESASHI',
@@ -267,6 +270,7 @@ export const wishlistHotels: Hotel[] = [
     status: 'interest',
     tags: ['種差', '海', '来年候補', '泊まりたかった宿'],
     mapUrl: mapSearch('ミチル種差 michill TANESASHI'),
+    image: 'images/places/michill_thumb.jpg',
   },
 ];
 

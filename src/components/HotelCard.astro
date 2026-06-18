@@ -7,9 +7,12 @@ interface Props {
 }
 
 const { hotel } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const imageSrc = hotel.image ? `${base}${hotel.image.replace(/^\/+/, '')}` : undefined;
 ---
 
 <article class="card card-pad hotel-card">
+  {imageSrc && <img class="hotel-thumb" src={imageSrc} alt={hotel.name} loading="lazy" />}
   <div class="split-title">
     <h2>{hotel.name}</h2>
     <StatusBadge status={hotel.status} />
@@ -37,6 +40,15 @@ const { hotel } = Astro.props;
 </article>
 
 <style>
+  .hotel-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 0.85rem;
+  }
+
   .hotel-card h2 {
     font-size: 1.2rem;
   }

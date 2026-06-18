@@ -1,11 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SectionTitle from '../components/SectionTitle.astro';
-import InfoCard from '../components/InfoCard.astro';
-import { arrivalJourney, checklist, flights, plans, tripOverview } from '../data/trip';
+import { arrivalJourney, plans, tripOverview } from '../data/trip';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const keyChecks = checklist.filter((item) => item.status === 'check').slice(0, 5);
 
 const dayDates: Record<string, string> = {
   'Day 1': '9/20（日）',
@@ -50,7 +48,14 @@ const planA = {
   </header>
 
   <section class="grid two">
-    <InfoCard title="基本方針" items={tripOverview.policy} />
+    <article class="card card-pad">
+      <div class="split-title">
+        <h3>基本方針</h3>
+      </div>
+      <ul class="list">
+        {tripOverview.policy.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
   </section>
 
   <SectionTitle title="旅の始まり — 9/20 三沢で合流" description="2本の移動が13:00に三沢空港で1本に。そのまま3泊4日の旅へ。" />
@@ -92,19 +97,6 @@ const planA = {
     </ol>
   </section>
 
-  <SectionTitle title="重要な未確定事項" description="旅行の骨格に影響する確認項目だけを先に見える場所へ置いています。" />
-  <section class="grid two">
-    <InfoCard title="飛行機の前提" body="暫定便は決定済み（Flights参照）／確定は9月ダイヤ公開待ち。" status="check" />
-    {flights.map((group) => <InfoCard title={group.title} body={group.note} status={group.status} />)}
-    {keyChecks.map((item) => <InfoCard title={item.title} body={item.note} status={item.status} />)}
-  </section>
-
-  <SectionTitle title="次に決めること" />
-  <section class="grid three">
-    <InfoCard title="9月ダイヤ確認" body="三沢↔丘珠と羽田↔三沢の2026年9月ダイヤを公式発表後に確認。" status="check" />
-    <InfoCard title="宿候補を絞る" body="八戸中心街とホテル龍泉洞愛山の空室・料金を確認。" status="tentative" />
-    <InfoCard title="レンタカー条件" body="三沢空港IN / 三沢空港OUTの貸出・返却時刻と料金を確認。" status="check" />
-  </section>
 </Layout>
 
 <style>
@@ -267,11 +259,6 @@ const planA = {
   @media (min-width: 768px) {
     .arrival-tracks {
       grid-template-columns: repeat(2, 1fr);
-    }
-
-    .merge-node {
-      justify-self: center;
-      min-width: min(28rem, 100%);
     }
 
     .day-timeline li {
