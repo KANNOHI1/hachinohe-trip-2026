@@ -21,7 +21,6 @@ export type FlightGroup = {
   title: string;
   status: Status;
   note: string;
-  details: string[];
   flights: Flight[];
 };
 
@@ -137,14 +136,6 @@ export const flights: FlightGroup[] = [
     status: 'check',
     note:
       'HAC運航。限定運航・1日1往復。暫定でこの便を置き、9/23（水・祝）の三沢→丘珠 JAL2816 のみ2026年9月ダイヤ公開後に要確認。',
-    details: [
-      'HAC運航',
-      '限定運航・1日1往復',
-      '丘珠→三沢: JAL2815 11:40→12:40（奈緒美 行き）',
-      '三沢→丘珠: JAL2816 13:10→14:05（奈緒美 帰り）',
-      '9/23（水・祝）の三沢→丘珠 JAL2816 のみ status: check（要確認）',
-      'シルバーウィーク臨時便次第、2026年9月ダイヤ公開後に確認',
-    ],
     flights: [
       { route: '丘珠→三沢', flightNo: 'JAL2815', depart: '11:40', arrive: '12:40', primaryLabel: '奈緒美 行き' },
       {
@@ -163,12 +154,6 @@ export const flights: FlightGroup[] = [
     status: 'check',
     note:
       'JAL・通年毎日運航。宏勇の帰りは JAL154 12:50→14:15 を確定として置く。9/23朝は長流寺墓参から12:50発へ逆算して動く。',
-    details: [
-      '羽田→三沢: JAL153 08:15→09:30 / JAL155 10:45→12:05 / JAL157 14:55→16:10 / JAL159 17:05→18:30',
-      '三沢→羽田: JAL152 10:10→11:35 / JAL154 12:50→14:15 / JAL156 16:50→18:15 / JAL158 19:10→20:35',
-      '宏勇 行き第一候補: JAL155 10:45→12:05',
-      '宏勇 帰り: JAL154 12:50→14:15（確定）',
-    ],
     flights: [
       { route: '羽田→三沢', flightNo: 'JAL153', depart: '08:15', arrive: '09:30' },
       {
