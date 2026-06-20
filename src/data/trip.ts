@@ -72,6 +72,7 @@ export type Market = {
   memo: string[];
   status: Status;
   mapUrl: string;
+  image?: string;
 };
 
 export type Place = {
@@ -268,6 +269,7 @@ export const markets: Market[] = [
     memo: ['市内中心部から車で約15分', '約300店が並ぶ日本最大級の朝市', '9/20は日曜だが、13:00合流なので間に合わない可能性が高い'],
     status: 'check',
     mapUrl: mapSearch('館鼻岸壁朝市'),
+    image: 'images/places/tatehana01.webp',
   },
   {
     name: '陸奥湊駅前朝市',
@@ -277,6 +279,7 @@ export const markets: Market[] = [
     memo: ['JR八戸駅から約15分', '戦後から続くレトロな朝市', '海鮮丼が人気', '9/21、9/22、9/23朝に行ける可能性あり', '祝日の営業状況は要確認'],
     status: 'check',
     mapUrl: mapSearch('JR陸奥湊駅前'),
+    image: 'images/places/mutsuminato01.webp',
   },
   {
     name: '湊日曜朝市',
@@ -286,6 +289,7 @@ export const markets: Market[] = [
     memo: ['JR八戸駅から約15分', '館鼻岸壁朝市と同時開催', '地元密着型の落ち着いた朝市', '9/20は13:00合流なので間に合わない可能性が高い'],
     status: 'check',
     mapUrl: mapSearch('JR陸奥湊駅'),
+    image: 'images/places/minatonichiyou.jpg',
   },
   {
     name: '八食センター',
@@ -295,6 +299,7 @@ export const markets: Market[] = [
     memo: ['屋内型の巨大市場ビル', '朝市ではない', '全天候型', '買った食材を炭火で焼く七厘村が有名', '9/23は水曜祝日のため、営業カレンダー要確認'],
     status: 'check',
     mapUrl: mapSearch('八戸市河原木 八食センター'),
+    image: 'images/places/hasshokucenter.jpg',
   },
 ];
 

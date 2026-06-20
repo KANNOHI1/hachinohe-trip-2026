@@ -26,6 +26,7 @@ const yokocho = places.find((place) => place.name.includes('みろく'));
           title={market.name}
           status={market.status}
           href={market.mapUrl}
+          image={market.image}
           items={[market.businessDays, market.hours, market.location, ...market.memo]}
         />
       ))
@@ -35,7 +36,7 @@ const yokocho = places.find((place) => place.name.includes('みろく'));
   {yokocho && (
     <>
       <SectionTitle title="夜の候補" />
-      <InfoCard title={yokocho.name} status={yokocho.status} href={yokocho.mapUrl} items={yokocho.memo} />
+      <InfoCard title={yokocho.name} status={yokocho.status} href={yokocho.mapUrl} image={yokocho.image} items={yokocho.memo} />
     </>
   )}
 </Layout>

@@ -9,12 +9,16 @@ interface Props {
   status?: Status;
   href?: string;
   hrefLabel?: string;
+  image?: string;
 }
 
-const { title, body, items = [], status, href, hrefLabel = '地図を見る' } = Astro.props;
+const { title, body, items = [], status, href, hrefLabel = '地図を見る', image } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const imageSrc = image ? `${base}${image.replace(/^\/+/, '')}` : undefined;
 ---
 
 <article class="card card-pad info-card">
+  {imageSrc && <img class="info-thumb" src={imageSrc} alt={title} loading="lazy" />}
   <div class="split-title">
     <h3>{title}</h3>
     {status && <StatusBadge status={status} />}
@@ -35,6 +39,15 @@ const { title, body, items = [], status, href, hrefLabel = '地図を見る' } =
 <style>
   .info-card h3 {
     font-size: 1.08rem;
+  }
+
+  .info-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 0.85rem;
   }
 
   .text-link {
