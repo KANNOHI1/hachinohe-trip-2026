@@ -316,7 +316,6 @@ export const places: Place[] = [
     tags: ['龍泉洞', '鍾乳洞', '地底湖', '岩手', '岩泉'],
     mapUrl: mapSearch('岩手県下閉伊郡岩泉町岩泉字神成1-1'),
     image: 'images/places/ryusendo.jpg',
-    imageCredit: '龍泉洞 — Public Domain / Wikimedia Commons',
   },
   {
     name: '長流寺（ちょうりゅうじ）',
@@ -330,7 +329,6 @@ export const places: Place[] = [
     tags: ['八戸', '墓参', '命日9/23', '家族', '曹洞宗'],
     mapUrl: mapSearch('青森県八戸市吹上1-4-18'),
     image: 'images/places/choryuji01.webp',
-    imageCredit: '長流寺 — 撮影: 菅野宏勇',
   },
   {
     name: '弁天島の厳島神社',
@@ -340,7 +338,6 @@ export const places: Place[] = [
     tags: ['神社', '震災', '鳥居', '海', '個人的興味'],
     mapUrl: mapSearch('青森県八戸市鮫町大作平45'),
     image: 'images/places/benten01.webp',
-    imageCredit: '弁天島の厳島神社 — 撮影: 菅野宏勇',
   },
   {
     name: '蕪嶋神社',
@@ -350,7 +347,6 @@ export const places: Place[] = [
     tags: ['神社', '弁天', '宗像三女神', '漁業', 'ウミネコ'],
     mapUrl: mapSearch('青森県八戸市鮫町鮫56-2'),
     image: 'images/places/kabushima.jpg',
-    imageCredit: '蕪嶋神社 — © くろふね (Jranar), CC BY 4.0 / Wikimedia Commons',
   },
   {
     name: '種差海岸',
@@ -359,7 +355,6 @@ export const places: Place[] = [
     tags: ['海', '景色', 'ドライブ', '八戸'],
     mapUrl: mapSearch('種差海岸'),
     image: 'images/places/tanesashi.jpg',
-    imageCredit: '種差海岸 — © くろふね (Jranar), CC BY 4.0 / Wikimedia Commons',
   },
   {
     name: 'みろく横丁・八戸横丁群',
@@ -368,7 +363,6 @@ export const places: Place[] = [
     tags: ['夜', '飲食', '横丁', '八戸中心街'],
     mapUrl: mapSearch('みろく横丁 八戸横丁群'),
     image: 'images/places/miroku.jpg',
-    imageCredit: 'みろく横丁 — © 七厩拓, CC BY-SA 4.0 / Wikimedia Commons',
   },
 ];
 
