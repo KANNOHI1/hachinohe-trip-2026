@@ -28,9 +28,10 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 
-# claude / codex session logs (keep out of public repo)
+# claude / codex session logs & local agent state (keep out of public repo)
 claude_logs/
 codex_logs/
+.claude/
 
 # playwright / preview artifacts
 .playwright-mcp/
