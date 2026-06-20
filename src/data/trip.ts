@@ -212,7 +212,7 @@ export const hotels: Hotel[] = [
     tags: ['龍泉洞', '温泉', '炭の湯', '三陸', '岩泉'],
     mapUrl: mapSearch('岩手県下閉伊郡岩泉町岩泉字松橋 ホテル龍泉洞愛山'),
     websiteUrl: 'https://www.aizan.co.jp/',
-    image: 'images/places/aizan_thumb.jpg',
+    image: 'images/places/aizan02.jpg',
   },
   {
     name: '八戸中心街（宿未定）',
@@ -244,7 +244,7 @@ export const wishlistHotels: Hotel[] = [
     status: 'interest',
     tags: ['三沢', '空港近い', '温泉', '青森文化', '来年候補'],
     mapUrl: mapSearch('青森県三沢市字古間木山56'),
-    image: 'images/places/aomoriya_thumb.jpg',
+    image: 'images/places/aomoriya03.jpg',
   },
   {
     name: 'ミチル種差｜michill TANESASHI',
@@ -255,7 +255,7 @@ export const wishlistHotels: Hotel[] = [
     status: 'interest',
     tags: ['種差', '海', '来年候補', '泊まりたかった宿'],
     mapUrl: mapSearch('ミチル種差 michill TANESASHI'),
-    image: 'images/places/michill_thumb.jpg',
+    image: 'images/places/michill03.png',
   },
 ];
 
@@ -333,6 +333,8 @@ export const places: Place[] = [
     status: 'confirmed',
     tags: ['八戸', '墓参', '命日9/23', '家族', '曹洞宗'],
     mapUrl: mapSearch('青森県八戸市吹上1-4-18'),
+    image: 'images/places/choryuji01.webp',
+    imageCredit: '長流寺 — 撮影: 菅野宏勇',
   },
   {
     name: '弁天島の厳島神社',
@@ -341,6 +343,8 @@ export const places: Place[] = [
     status: 'interest',
     tags: ['神社', '震災', '鳥居', '海', '個人的興味'],
     mapUrl: mapSearch('青森県八戸市鮫町大作平45'),
+    image: 'images/places/benten01.webp',
+    imageCredit: '弁天島の厳島神社 — 撮影: 菅野宏勇',
   },
   {
     name: '蕪嶋神社',
