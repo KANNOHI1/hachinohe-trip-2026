@@ -2,7 +2,7 @@
 name: astro-pages-node22
 description: Astro6 を GitHub Pages(withastro/action) でデプロイする際は Node 22 を明示する
 type: reference
-last_verified: 2026-06-16
+last_verified: 2026-08-01
 ---
 
 Astro 6 系を GitHub Pages の公式 `withastro/action@v3` でデプロイすると、action の既定 Node が **20** のため CI build が `Node.js v20.x is not supported by Astro!`（Astro6 は Node>=22.12 必須）で失敗する。

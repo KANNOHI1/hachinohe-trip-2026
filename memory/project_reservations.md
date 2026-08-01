@@ -2,7 +2,7 @@
 name: reservations
 description: 八戸・三沢旅行2026の確定予約（宿・便）の状況サマリ
 type: project
-last_verified: 2026-06-18
+last_verified: 2026-08-01
 ---
 
 **確定予約（要点のみ・予約番号/氏名等の個人情報は `_private/予約情報.md` に保管、公開リポには出さない）:**

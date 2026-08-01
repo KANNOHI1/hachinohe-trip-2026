@@ -2,7 +2,7 @@
 name: repo-visibility-default
 description: GitHubリポジトリの公開設定はいちいち確認せず public + GitHub Pages が標準
 type: feedback
-last_verified: 2026-06-16
+last_verified: 2026-08-01
 ---
 
 新規プロジェクトで GitHub リポジトリを作るとき、**public / private をいちいち質問しない**。HK の標準は **public リポジトリ + GitHub Pages 公開**。

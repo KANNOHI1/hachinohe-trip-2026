@@ -2,7 +2,7 @@
 name: hachinohe-trip-overview
 description: 八戸・三沢旅行2026 旅のしおりサイト（Astro/TS, GitHub Pages）プロジェクト概要
 type: project
-last_verified: 2026-06-20
+last_verified: 2026-08-01
 ---
 
 **プロジェクト**: 八戸・三沢旅行 2026 の「旅のしおり」WEBサイト。2人（Hiro=東京発 / 彼女=札幌発）で共有。Google Keep のラフメモを見やすく更新しやすいサイトへ移行する。

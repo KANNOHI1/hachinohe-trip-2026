@@ -2,7 +2,7 @@
 name: single-image-over-collage
 description: サイトの場所/ホテル画像は4枚コラージュより「ベスト単写真」をHKが好む（特にスマホ）
 type: feedback
-last_verified: 2026-06-20
+last_verified: 2026-08-01
 ---
 
 HK の好み: カード画像は**1項目1枚のベスト写真**にする。複数枚を2×2に並べたコラージュは、特にスマホで見づらく「ダサい」と却下された。

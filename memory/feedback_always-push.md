@@ -2,7 +2,7 @@
 name: always-push
 description: 変更は常に commit→push まで完遂する（ローカル止まりは二度手間で禁止）
 type: feedback
-last_verified: 2026-06-18
+last_verified: 2026-08-01
 ---
 
 HK の恒久ルール: コード/設定を変更したら**常に git commit → push まで一気にやる**。ローカル変更だけで止めて「push する?」と聞くのは二度手間で NG。
