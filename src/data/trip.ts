@@ -134,9 +134,9 @@ export const arrivalJourney: ArrivalJourney = {
 export const flights: FlightGroup[] = [
   {
     title: '札幌（丘珠）↔ 三沢',
-    status: 'check',
+    status: 'confirmed',
     note:
-      'HAC運航。限定運航・1日1往復。暫定でこの便を置き、9/23（水・祝）の三沢→丘珠 JAL2816 のみ2026年9月ダイヤ公開後に要確認。',
+      'HAC運航。限定運航・1日1往復。往復とも航空券予約済み（2026-08-01時点）。',
     flights: [
       { route: '丘珠→三沢', flightNo: 'JAL2815', depart: '11:40', arrive: '12:40', primaryLabel: '奈緒美 行き' },
       {
@@ -144,17 +144,17 @@ export const flights: FlightGroup[] = [
         flightNo: 'JAL2816',
         depart: '13:10',
         arrive: '14:05',
-        status: 'check',
+        status: 'confirmed',
         isPrimary: true,
-        primaryLabel: '奈緒美 帰り / 9/23 要確認',
+        primaryLabel: '奈緒美 帰り',
       },
     ],
   },
   {
     title: '東京（羽田）↔ 三沢',
-    status: 'check',
+    status: 'confirmed',
     note:
-      'JAL・通年毎日運航。宏勇の帰りは JAL154 12:50→14:15 を確定として置く。9/23朝は長流寺墓参から12:50発へ逆算して動く。',
+      'JAL・通年毎日運航。宏勇は JAL155（行き）・JAL154（帰り）を予約済み。9/23朝は長流寺墓参から12:50発へ逆算して動く。',
     flights: [
       { route: '羽田→三沢', flightNo: 'JAL153', depart: '08:15', arrive: '09:30' },
       {
@@ -163,7 +163,7 @@ export const flights: FlightGroup[] = [
         depart: '10:45',
         arrive: '12:05',
         isPrimary: true,
-        primaryLabel: '宏勇 行き第一候補',
+        primaryLabel: '宏勇 行き',
       },
       { route: '羽田→三沢', flightNo: 'JAL157', depart: '14:55', arrive: '16:10' },
       { route: '羽田→三沢', flightNo: 'JAL159', depart: '17:05', arrive: '18:30' },
@@ -372,8 +372,8 @@ export const places: Place[] = [
 ];
 
 export const checklist: ChecklistItem[] = [
-  { title: '航空券確認', note: '2026年9月ダイヤ公開後、全便を最終確認する', status: 'check', done: false },
-  { title: '9/23 丘珠便確認', note: '三沢→丘珠 JAL2816 の運航有無を確認する', status: 'check', done: false },
+  { title: '航空券確認', note: '宏勇・奈緒美とも往復全便予約済み（2026-08-01）', status: 'confirmed', done: true },
+  { title: '9/23 丘珠便確認', note: 'JAL2816 は航空券予約成立により運航確定', status: 'confirmed', done: true },
   {
     title: '長流寺の墓参・法要確認',
     note: '0178-43-4468 へ電話。命日9/23（彼岸の中日で混雑）の墓参可否・法要の事前予約・お花/手桶/線香・駐車場・参拝可能時間を確認。帰り便 JAL154（三沢12:50発）に向け、空港まで約40分＋レンタカー返却・保安検査を見込み、遅くとも11:00頃には長流寺を出発する。',
