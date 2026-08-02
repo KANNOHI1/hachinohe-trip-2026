@@ -138,7 +138,7 @@ export const flights: FlightGroup[] = [
     note:
       'HAC運航。限定運航・1日1往復。往復とも航空券予約済み（2026-08-01時点）。',
     flights: [
-      { route: '丘珠→三沢', flightNo: 'JAL2815', depart: '11:40', arrive: '12:40', primaryLabel: '奈緒美 行き' },
+      { route: '丘珠→三沢', flightNo: 'JAL2815', depart: '11:40', arrive: '12:40', isPrimary: true, primaryLabel: '奈緒美 行き' },
       {
         route: '三沢→丘珠',
         flightNo: 'JAL2816',
