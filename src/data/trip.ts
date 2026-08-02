@@ -230,6 +230,7 @@ export const hotels: Hotel[] = [
     status: 'confirmed',
     tags: ['八戸', '予約済み', '朝食込み', '空港30分'],
     mapUrl: mapSearch('青森県八戸市長根2-5-1 ホテルアドレ'),
+    websiteUrl: 'https://couples.jp/hotel-details/54032',
   },
 ];
 
