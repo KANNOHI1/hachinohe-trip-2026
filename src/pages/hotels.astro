@@ -8,15 +8,15 @@ import { hotels, wishlistHotels } from '../data/trip';
 <Layout title="Hotels">
   <header class="page-header">
     <h1>Hotels</h1>
-    <p>龍泉洞泊＋八戸ベースの今回の旅で実際に泊まる宿です。料金・空室・客室露天風呂付き客室の有無は予約前に再確認します。</p>
+    <p>龍泉洞泊＋八戸ベースの今回の旅で実際に泊まる宿です。全3泊とも予約済みです。</p>
   </header>
 
   <div class="notice">
-    <strong>要確認</strong>
-    料金・空室・客室露天風呂付き客室の有無は予約前に再確認します。
+    <strong>全泊予約済み</strong>
+    9/20・9/22＝ホテルアドレ（朝食込）、9/21＝ホテル龍泉洞愛山（2食付）。いずれも予約確定です。
   </div>
 
-  <SectionTitle title="宿候補" />
+  <SectionTitle title="泊まる宿（全泊予約済み）" />
   <section class="grid two">
     {hotels.map((hotel) => <HotelCard hotel={hotel} />)}
   </section>
