@@ -41,13 +41,18 @@ export type ArrivalJourney = {
   };
 };
 
-export type Plan = {
-  name: string;
-  route: string;
-  summary: string[];
-  merits: string[];
-  risks: string[];
+export type DayItem = {
+  time: string;
+  text: string;
+};
+
+export type DayPlan = {
+  day: string;
+  date: string;
+  headline: string;
+  stay: string;
   status: Status;
+  items: DayItem[];
 };
 
 export type Hotel = {
@@ -182,22 +187,68 @@ export const flights: FlightGroup[] = [
   },
 ];
 
-export const plans: Plan[] = [
+export const dayPlans: DayPlan[] = [
   {
-    name: 'Plan A',
-    route: '八戸ベース＋龍泉洞泊（本命）',
-    summary: [
-      '1泊目=ホテルアドレ（予約済み・朝食込み）',
-      '2泊目=ホテル龍泉洞愛山（予約済み・龍泉洞泊・温泉「炭の湯」・三陸2食）',
-      '3泊目＝ホテルアドレ（予約済み・朝食込み）',
-      'Day1 三沢着（航空祭当日・空港周辺の渋滞注意）→八戸（海・種差海岸をゆるく）',
-      'Day2 八戸→南下→龍泉洞→愛山泊',
-      'Day3 愛山→北上（種差海岸など）→八戸泊',
-      'Day4 長流寺墓参→三沢OUT',
+    day: 'Day 1',
+    date: '9/20（日）',
+    headline: '三沢で合流 → 航空祭を空港から眺めて離脱 → 根城',
+    stay: 'ホテルアドレ（八戸）',
+    status: 'tentative',
+    items: [
+      { time: '12:05', text: '宏勇 三沢着（JAL155）' },
+      { time: '12:40', text: '奈緒美 三沢着（JAL2815）' },
+      { time: '13:00', text: '三沢空港で合流・レンタカー受取' },
+      { time: '13:30', text: '三沢基地航空祭の飛行展示を空港周辺から観覧（入場はしない・タイムテーブル次第）' },
+      { time: '14:30', text: '三沢を離脱。帰宅ラッシュに巻き込まれる前に八戸へ' },
+      { time: '15:15', text: '史跡 根城の広場（入場は16:30まで。この旅で確実に開くのは9/20だけ）' },
+      { time: '17:00', text: 'ホテルアドレ チェックイン' },
+      { time: '夜', text: '八戸で軽く夕食（横丁はDay3に取ってある）' },
     ],
-    merits: ['龍泉洞を泊まりで堪能（日帰り往復の運転を回避）', '前後の八戸を楽しめる', '凱旋の締めも八戸'],
-    risks: ['中日に南北移動', '9/21予約済みのため到着時刻に注意'],
-    status: 'confirmed',
+  },
+  {
+    day: 'Day 2',
+    date: '9/21（月・祝）',
+    headline: '櫛引八幡宮に寄って南下 → 龍泉洞 → 岩泉泊',
+    stay: 'ホテル龍泉洞愛山（岩泉）',
+    status: 'tentative',
+    items: [
+      { time: '08:00', text: 'アドレで朝食（朝市は今回入れない）' },
+      { time: '09:15', text: '櫛引八幡宮・国宝館（国宝館は水木休。9/21は開館）' },
+      { time: '10:30', text: '八戸を出発、三陸道で南下' },
+      { time: '12:30', text: '岩泉着・昼食' },
+      { time: '13:30', text: '龍泉洞（入洞1,100円・見学30〜40分。最終入洞時刻は当日朝に電話確認）' },
+      { time: '15:00', text: 'ホテル龍泉洞愛山 チェックイン（温泉「炭の湯」・2食付）' },
+    ],
+  },
+  {
+    day: 'Day 3',
+    date: '9/22（火・休日）',
+    headline: '三陸を北上して海岸線ドライブ → 八戸に戻って横丁',
+    stay: 'ホテルアドレ（八戸）',
+    status: 'tentative',
+    items: [
+      { time: '09:30', text: '愛山を出発、三陸沿いを北上' },
+      { time: '12:00', text: '種差海岸（天然芝と海）' },
+      { time: '13:30', text: '蕪嶋神社（ウミネコと弁天様）' },
+      { time: '14:30', text: '弁天島の厳島神社（アメリカから還ってきた鳥居）' },
+      { time: '16:00', text: '八食センター（水曜定休のため9/22は営業想定）' },
+      { time: '17:00', text: 'ホテルアドレ チェックイン' },
+      { time: '19:00', text: 'みろく横丁（飲むなら車を置いてタクシー）' },
+    ],
+  },
+  {
+    day: 'Day 4',
+    date: '9/23（水・祝）',
+    headline: '長流寺の墓参 → 三沢OUT',
+    stay: '—',
+    status: 'check',
+    items: [
+      { time: '08:00', text: 'アドレで朝食・チェックアウト' },
+      { time: '09:00', text: '長流寺 墓参（命日・彼岸の中日）' },
+      { time: '11:00', text: '長流寺を出発。ここが最終リミット' },
+      { time: '11:40', text: '三沢空港着・レンタカー返却' },
+      { time: '12:50', text: '宏勇 JAL154 で羽田へ／13:10 奈緒美 JAL2816 で丘珠へ' },
+    ],
   },
 ];
 
@@ -283,7 +334,7 @@ export const markets: Market[] = [
     businessDays: '月曜日〜土曜日 / 日曜日、第2土曜日は休み',
     hours: '午前3時頃〜正午頃',
     location: 'JR陸奥湊駅前',
-    memo: ['JR八戸駅から約15分', '戦後から続くレトロな朝市', '海鮮丼が人気', '9/21、9/22、9/23朝に行ける可能性あり', '祝日の営業状況は要確認'],
+    memo: ['JR八戸駅から約15分', '戦後から続くレトロな朝市', '海鮮丼が人気', '今回は朝の立ち寄り枠を取っていない（Day2朝=櫛引八幡宮、Day3朝=岩泉、Day4朝=長流寺）', '早起きできた日の飛び込み候補として残す'],
     status: 'check',
     mapUrl: mapSearch('JR陸奥湊駅前'),
     image: 'images/places/mutsuminato01.webp',
@@ -303,7 +354,7 @@ export const markets: Market[] = [
     businessDays: '水曜日を除く毎日が基本 / お盆や年末年始は営業あり',
     hours: '午前9時〜午後6時',
     location: '八戸市河原木',
-    memo: ['屋内型の巨大市場ビル', '朝市ではない', '全天候型', '買った食材を炭火で焼く七厘村が有名', '9/23は水曜祝日のため、営業カレンダー要確認'],
+    memo: ['屋内型の巨大市場ビル', '朝市ではない', '全天候型', '買った食材を炭火で焼く七厘村が有名', 'Day3（9/22 火）の夕方に寄る。水曜定休なので9/22は営業の想定'],
     status: 'check',
     mapUrl: mapSearch('八戸市河原木 八食センター'),
     image: 'images/places/hasshokucenter.jpg',
@@ -325,7 +376,7 @@ export const places: Place[] = [
       '最終入洞時刻は要電話確認(0194-22-2566)',
     ],
     status: 'tentative',
-    tags: ['龍泉洞', '鍾乳洞', '地底湖', '岩手', '岩泉'],
+    tags: ['Day2', '龍泉洞', '鍾乳洞', '地底湖', '岩手', '岩泉'],
     mapUrl: mapSearch('岩手県下閉伊郡岩泉町岩泉字神成1-1'),
     image: 'images/places/ryusendo.jpg',
   },
@@ -338,16 +389,47 @@ export const places: Place[] = [
       'TEL 0178-43-4468',
     ],
     status: 'confirmed',
-    tags: ['八戸', '墓参', '命日9/23', '家族', '曹洞宗'],
+    tags: ['Day4', '八戸', '墓参', '命日9/23', '家族', '曹洞宗'],
     mapUrl: mapSearch('青森県八戸市吹上1-4-18'),
     image: 'images/places/choryuji01.webp',
+  },
+  {
+    name: '史跡 根城の広場',
+    address: '青森県八戸市根城字根城47',
+    memo: [
+      '南部師行が築いた根城の本丸を、発掘調査にもとづいて復元した史跡公園',
+      '9:00〜17:00（入場は16:30まで）／本丸のみ有料・一般250円',
+      '休館は月曜と「祝日の翌日」→ この旅で確実に開くのは9/20（日）だけ',
+      '9/22（火）は祝日の翌日にあたり休館の可能性があるため、Day1に行く',
+      '併設の八戸市博物館は2027年6月までリニューアル休館中',
+      'TEL 0178-41-1726',
+    ],
+    status: 'tentative',
+    tags: ['Day1', '八戸', '史跡', '城', '南部氏'],
+    mapUrl: mapSearch('青森県八戸市根城字根城47 史跡根城の広場'),
+    image: 'images/places/nejo.jpg',
+  },
+  {
+    name: '櫛引八幡宮',
+    address: '青森県八戸市八幡字八幡丁3',
+    memo: [
+      '南部一之宮。国宝の赤糸威鎧など、国宝の鎧2領を伝える',
+      '国宝館 9:00〜17:00（最終入館16:30）・大人400円',
+      '国宝館の休館は水・木曜 → 9/21（月・祝）は開館',
+      'Day2の朝に立ち寄り、そのまま南下して龍泉洞へ向かう動線',
+      'TEL 0178-27-3053',
+    ],
+    status: 'tentative',
+    tags: ['Day2', '八戸', '神社', '国宝', '南部一之宮'],
+    mapUrl: mapSearch('青森県八戸市八幡字八幡丁3 櫛引八幡宮'),
+    image: 'images/places/kushihiki.jpg',
   },
   {
     name: '弁天島の厳島神社',
     address: '青森県八戸市鮫町大作平45',
     memo: ['津波で鳥居が流失', '鳥居の一部が約7,000km離れたアメリカ西海岸に漂着', '返還された鳥居の一部を使って再建された'],
     status: 'interest',
-    tags: ['神社', '震災', '鳥居', '海', '個人的興味'],
+    tags: ['Day3', '神社', '震災', '鳥居', '海', '個人的興味'],
     mapUrl: mapSearch('青森県八戸市鮫町大作平45'),
     image: 'images/places/benten01.webp',
   },
@@ -356,7 +438,7 @@ export const places: Place[] = [
     address: '青森県八戸市鮫町鮫56-2',
     memo: ['社伝では1269年に江ノ島弁才天を勧進したのが始まり', '祭神は市寸嶋比売命、多紀理毘売命、多岐都比売命の宗像三女神', '蕪嶋の弁天様として信仰されてきた', '弁財天は商売繁盛や子授けにご利益があるとされる', '漁業の守り神でもある', 'ウミネコでも有名'],
     status: 'interest',
-    tags: ['神社', '弁天', '宗像三女神', '漁業', 'ウミネコ'],
+    tags: ['Day3', '神社', '弁天', '宗像三女神', '漁業', 'ウミネコ'],
     mapUrl: mapSearch('青森県八戸市鮫町鮫56-2'),
     image: 'images/places/kabushima.jpg',
   },
@@ -364,15 +446,15 @@ export const places: Place[] = [
     name: '種差海岸',
     memo: ['八戸の代表的な海岸景勝地', '天然芝と海の景色', 'ミチル種差が取れない場合でも訪問候補', '蕪嶋神社、弁天島と合わせて海岸線ドライブに組み込みたい'],
     status: 'tentative',
-    tags: ['海', '景色', 'ドライブ', '八戸'],
+    tags: ['Day3', '海', '景色', 'ドライブ', '八戸'],
     mapUrl: mapSearch('種差海岸'),
     image: 'images/places/tanesashi.jpg',
   },
   {
     name: 'みろく横丁・八戸横丁群',
-    memo: ['八戸中心街の夜スポット', 'アドレから車5分（飲むならタクシーで）', '9/20か9/22の夜に行く候補'],
+    memo: ['八戸中心街の夜スポット', 'アドレから車5分（飲むならタクシーで）', 'Day3（9/22）の夜に行く'],
     status: 'tentative',
-    tags: ['夜', '飲食', '横丁', '八戸中心街'],
+    tags: ['Day3', '夜', '飲食', '横丁', '八戸中心街'],
     mapUrl: mapSearch('みろく横丁 八戸横丁群'),
     image: 'images/places/miroku.jpg',
   },
@@ -401,8 +483,14 @@ export const checklist: ChecklistItem[] = [
   },
   { title: '宿予約', note: '全泊確定: 9/20・9/22 ホテルアドレ(朝食込10,300円/泊)、9/21 ホテル龍泉洞愛山。', status: 'confirmed', done: true },
   { title: 'レンタカー予約', note: '三沢空港IN / 三沢空港OUTの貸出・返却時刻と料金を確認する', status: 'check', done: false },
-  { title: '朝市営業確認', note: '祝日の営業状況を各市場で確認する', status: 'check', done: false },
-  { title: '八食センター営業確認', note: '9/23は水曜祝日のため、営業カレンダー要確認', status: 'check', done: false },
+  {
+    title: '根城の広場 開館確認',
+    note: 'TEL 0178-41-1726。Day1(9/20 日)に行く前提。休館は月曜と「祝日の翌日」で、9/22(火)は該当し休館の可能性があるため日程を動かさない。併設の八戸市博物館は2027年6月までリニューアル休館中',
+    status: 'check',
+    done: false,
+  },
+  { title: '朝市営業確認', note: '今回は朝の立ち寄り枠なし。早起きできた日の飛び込み用に営業日だけ把握しておく', status: 'check', done: false },
+  { title: '八食センター営業確認', note: 'Day3(9/22 火)夕方に寄る前提。水曜定休のため9/22は営業の想定だが、連休中の営業時間を確認', status: 'check', done: false },
   { title: 'Google Mapリンク整理', note: '宿・朝市・神社・海岸線のリンクを旅行前に整理する', status: 'tentative', done: false },
   { title: '予算整理', note: '宿、航空券、レンタカー、食費の概算をまとめる', status: 'tentative', done: false },
 ];
