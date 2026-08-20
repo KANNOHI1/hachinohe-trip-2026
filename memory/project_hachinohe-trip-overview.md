@@ -2,7 +2,7 @@
 name: hachinohe-trip-overview
 description: 八戸・三沢旅行2026 旅のしおりサイト（Astro/TS, GitHub Pages）プロジェクト概要
 type: project
-last_verified: 2026-08-01
+last_verified: 2026-08-20
 ---
 
 **プロジェクト**: 八戸・三沢旅行 2026 の「旅のしおり」WEBサイト。2人（Hiro=東京発 / 彼女=札幌発）で共有。Google Keep のラフメモを見やすく更新しやすいサイトへ移行する。
@@ -15,4 +15,5 @@ last_verified: 2026-08-01
 - 画像方針: **ベスト単写真**で配線（4枚コラージュは廃止＝スマホ可読性[[single-image-over-collage]]）／**画像クレジット表示なし**（HK判断・CC違反承知）
 - 公開: **GitHub Pages**（repo: KANNOHI1/hachinohe-trip-2026 public、URL `https://kannohi1.github.io/hachinohe-trip-2026/`）。変更は常に push まで[[always-push]]
 - 要件原文: `docs/Prompt01_指示書ドラフト.txt` / `Prompt02_作業順ドラフト.txt`（raw data）
-- 実装は Codex に委譲する方針（.astro/.ts ソースコード）。**大きい複合プロンプトはhangするのでファイル単位に小分け**。[[repo-visibility-default]] [[astro-pages-node22]]
+- 実装は**監督（Claude）が直接編集**する。Codex 運用は 2026-08-17 に終了（委譲は並列/量/探索の3条件のみ）。[[repo-visibility-default]] [[astro-pages-node22]]
+- **完成度（2026-08-20 実機確認）**: サイトは実質完成。合流ドラマ＋Day1〜Day4の時刻付き日程（各日のランチ込み）を Home に、宿・便・場所・チェックリストを各ページに配線済みで、本番 = HEAD が一致。未実装は**アンケートタブのみ**（収集方式・設問が未決）。データの正は `src/data/trip.ts` の `dayPlans` / `places` / `hotels` / `flights` / `checklist`。[[ryusendo-closure-risk]]

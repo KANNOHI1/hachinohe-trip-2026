@@ -6,3 +6,4 @@
 - [feedback_single-image-over-collage.md](feedback_single-image-over-collage.md) — カード画像は4枚コラージュよりベスト単写真をHKが好む（特にスマホ）
 - [reference_astro-pages-node22.md](reference_astro-pages-node22.md) — Astro6×Pages は withastro/action に node-version:22 を明示
 - [project_reservations.md](project_reservations.md) — 確定予約サマリ（愛山9/21予約済31,480円・帰り便154）。個人情報は_private
+- [project_ryusendo-closure-risk.md](project_ryusendo-closure-risk.md) — 龍泉洞は増水で閉洞中(2026/8/12〜)。Day2の可否は9月上旬に再開告知と透明度で判断
