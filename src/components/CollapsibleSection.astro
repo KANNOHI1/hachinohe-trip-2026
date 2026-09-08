@@ -1,0 +1,95 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  count?: number;
+  open?: boolean;
+}
+
+const { title, description, count, open = false } = Astro.props;
+---
+
+<details class="section-collapse" open={open}>
+  <summary>
+    <span class="head">
+      <span class="title">{title}</span>
+      {count !== undefined && <span class="count">{count}件</span>}
+    </span>
+    <span class="toggle" aria-hidden="true">▼</span>
+  </summary>
+  <div class="body">
+    {description && <p class="desc">{description}</p>}
+    <slot />
+  </div>
+</details>
+
+<style>
+  .section-collapse {
+    margin: 1.6rem 0 0;
+    border-top: 2px solid var(--color-line);
+  }
+
+  .section-collapse summary {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 0.8rem;
+    justify-content: space-between;
+    list-style: none;
+    padding: 1rem 0.2rem;
+  }
+
+  .section-collapse summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .section-collapse summary::marker {
+    content: '';
+  }
+
+  .head {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .title {
+    color: var(--color-teal);
+    font-size: clamp(1.3rem, 5.2vw, 1.9rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .count {
+    background: rgba(31, 95, 91, 0.1);
+    border-radius: 999px;
+    color: var(--color-teal);
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 0.18rem 0.6rem;
+  }
+
+  .toggle {
+    color: var(--color-teal);
+    flex: 0 0 auto;
+    font-size: 0.8rem;
+    font-weight: 900;
+    transition: transform 160ms ease;
+  }
+
+  .section-collapse[open] .toggle {
+    transform: rotate(180deg);
+  }
+
+  .desc {
+    color: var(--color-muted);
+    margin: 0 0 1rem;
+    max-width: 44rem;
+  }
+
+  .body {
+    padding-bottom: 1.4rem;
+  }
+</style>

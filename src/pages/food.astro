@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionTitle from '../components/SectionTitle.astro';
+import CollapsibleSection from '../components/CollapsibleSection.astro';
 import InfoCard from '../components/InfoCard.astro';
 import EateryCard from '../components/EateryCard.astro';
 import { eateries, markets, places } from '../data/trip';
@@ -11,7 +11,7 @@ const yokocho = places.find((place) => place.name.includes('みろく'));
 <Layout title="Food & Markets">
   <header class="page-header">
     <h1>Food & Markets</h1>
-    <p>八戸の朝市、八食センター、町中華、横丁を旅行中に見やすい形で整理しています。祝日営業は必ず確認します。</p>
+    <p>八戸の朝市、八食センター、町中華、横丁を旅行中に見やすい形で整理しています。見出しをタップで開閉できます。</p>
   </header>
 
   <div class="notice">
@@ -19,41 +19,43 @@ const yokocho = places.find((place) => place.name.includes('みろく'));
     9/20は13:00合流、9/23は水曜祝日のため、朝市と八食センターの営業カレンダー確認が必要です。
   </div>
 
-  <SectionTitle title="朝市・市場" />
-  <section class="grid two">
-    {
-      markets.map((market) => (
-        <InfoCard
-          title={market.name}
-          status={market.status}
-          href={market.mapUrl}
-          image={market.image}
-          items={[market.businessDays, market.hours, market.location, ...market.memo]}
-        />
-      ))
-    }
-  </section>
+  <CollapsibleSection title="町中華・八戸らーめん" count={eateries.length} open={true}>
+    <div class="notice notice-pick">
+      <strong>Day1（9/20 日）の夜、どこにする？</strong>
+      町中華を入れられる枠は初日の夜ひとつだけ。Day2昼=龍泉洞、Day3昼=久慈、Day3夜=みろく横丁、Day4=空弁で他は埋まっています。
+      9/20は日曜なので下の6軒とも定休日には当たりませんが、シルバーウィークの特別営業までは裏が取れていません。決めたら当日に一本TELを。
+    </div>
+    <section class="grid two">
+      {eateries.map((eatery) => <EateryCard eatery={eatery} />)}
+    </section>
+  </CollapsibleSection>
 
-  <SectionTitle title="町中華・八戸らーめん" />
-  <div class="notice notice-pick">
-    <strong>Day1（9/20 日）の夜、どこにする？</strong>
-    町中華を入れられる枠は初日の夜ひとつだけ。Day2昼=龍泉洞、Day3昼=久慈、Day3夜=みろく横丁、Day4=空弁で他は埋まっています。
-    9/20は日曜なので下の6軒とも定休日には当たりませんが、シルバーウィークの特別営業までは裏が取れていません。決めたら当日に一本TELを。
-  </div>
-  <section class="grid two">
-    {eateries.map((eatery) => <EateryCard eatery={eatery} />)}
-  </section>
+  <CollapsibleSection title="朝市・市場" count={markets.length}>
+    <section class="grid two">
+      {
+        markets.map((market) => (
+          <InfoCard
+            title={market.name}
+            status={market.status}
+            href={market.mapUrl}
+            image={market.image}
+            items={[market.businessDays, market.hours, market.location, ...market.memo]}
+          />
+        ))
+      }
+    </section>
+  </CollapsibleSection>
 
   {yokocho && (
-    <>
-      <SectionTitle title="夜の候補" />
+    <CollapsibleSection title="夜の候補" count={1}>
       <InfoCard title={yokocho.name} status={yokocho.status} href={yokocho.mapUrl} image={yokocho.image} items={yokocho.memo} />
-    </>
+    </CollapsibleSection>
   )}
 
   <style>
     .notice-pick {
       line-height: 1.85;
+      margin-bottom: 1.2rem;
     }
   </style>
 </Layout>
