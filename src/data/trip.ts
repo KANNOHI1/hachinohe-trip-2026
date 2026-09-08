@@ -80,6 +80,30 @@ export type Market = {
   image?: string;
 };
 
+export type EateryDish = {
+  name: string;
+  price: string;
+};
+
+export type Eatery = {
+  name: string;
+  reading?: string;
+  genre: string;
+  area: string;
+  address: string;
+  tel: string;
+  hours: string;
+  closed: string;
+  sunday: string;
+  hook: string;
+  dishes: EateryDish[];
+  memo: string[];
+  status: Status;
+  mapUrl: string;
+  linkUrl: string;
+  linkLabel: string;
+};
+
 export type Place = {
   name: string;
   address?: string;
@@ -202,7 +226,7 @@ export const dayPlans: DayPlan[] = [
       { time: '14:30', text: '三沢を離脱。帰宅ラッシュに巻き込まれる前に八戸へ' },
       { time: '15:15', text: '史跡 根城の広場（入場は16:30まで。この旅で確実に開くのは9/20だけ）' },
       { time: '17:00', text: 'ホテルアドレ チェックイン' },
-      { time: '夜', text: '八戸で軽く夕食（横丁はDay3に取ってある）' },
+      { time: '夜', text: '八戸で夕食。この旅で町中華を入れられる唯一の枠（横丁はDay3）。候補6軒はFoodページに。9/20は日曜でいずれも定休日には当たらないが、SWの特別営業だけ当日TELで確認' },
     ],
   },
   {
@@ -359,6 +383,156 @@ export const markets: Market[] = [
     status: 'check',
     mapUrl: mapSearch('八戸市河原木 八食センター'),
     image: 'images/places/hasshokucenter.jpg',
+  },
+];
+
+export const eateries: Eatery[] = [
+  {
+    name: '上海楼 根城店',
+    reading: 'シャンハイロウ',
+    genre: '町中華',
+    area: '根城',
+    address: '八戸市根城5-1-16',
+    tel: '0178-45-4490',
+    hours: '11:30〜14:00 / 17:30〜20:00',
+    closed: '月曜・木曜',
+    sunday: '9/20（日）は営業の想定',
+    hook: 'Day1の動線にいちばん素直に乗る店。15:15の根城の広場と同じエリアなので、史跡を見たあとそのまま流れで入れる。予算は1,000円以下、気取らない普段づかいの町中華。',
+    dishes: [
+      { name: '五目ラーメン＋ミニチャーハンのセット', price: '看板' },
+      { name: 'チンジャオロース定食', price: '看板' },
+    ],
+    memo: [
+      '閉店時刻は情報源によって20:00と21:00で食い違うため、遅い時間に行くなら電話で確認',
+      '長苗代駅が最寄り',
+    ],
+    status: 'tentative',
+    mapUrl: mapSearch('青森県八戸市根城5-1-16 上海楼 根城店'),
+    linkUrl: 'https://tabelog.com/aomori/A0203/A020301/2002067/',
+    linkLabel: '食べログで見る',
+  },
+  {
+    name: '金華楼 本店',
+    reading: 'きんかろう',
+    genre: '町中華',
+    area: '青葉（小中野）',
+    address: '八戸市青葉1-17-27',
+    tel: '0178-43-5554',
+    hours: '11:00〜15:00 / 17:00〜20:00',
+    closed: '月曜',
+    sunday: '9/20（日）は 17:00〜20:00 で営業（食べログ記載）',
+    hook: '「八戸の歴史ある町中華」と紹介される老舗。34席でカウンター・テーブル・小上がりが揃っていて、ふらっと入って炒飯と餃子で終われるタイプ。駐車場13台あり、車で行きやすい。',
+    dishes: [
+      { name: 'チャーシュー麺', price: '820円' },
+      { name: '五目チャーハン', price: '850円' },
+      { name: '焼き餃子（二人前）', price: '900円' },
+      { name: 'タンメン / ニラレバ炒め', price: '人気' },
+    ],
+    memo: [
+      '予算は〜1,000円台前半',
+      'カード不可・電子マネーは利用可',
+    ],
+    status: 'tentative',
+    mapUrl: mapSearch('青森県八戸市青葉1-17-27 金華楼 本店'),
+    linkUrl: 'https://tabelog.com/aomori/A0203/A020301/2004137/',
+    linkLabel: '食べログで見る',
+  },
+  {
+    name: '中国料理 正華',
+    reading: 'せいか',
+    genre: '八戸らーめん',
+    area: '内丸（中心街）',
+    address: '八戸市内丸3-1-38',
+    tel: '0178-22-5980',
+    hours: '11:30〜21:00 ごろ（L.O. 20:10 の情報あり）',
+    closed: '不定休',
+    sunday: '不定休のため要確認',
+    hook: '「八戸らーめん会」の設立当初から煮干しの八戸らーめんを出している本家筋。透き通った煮干しスープに、ちょっと厚めのチャーシューがのる一杯。中心街（本八戸駅そば）なので、みろく横丁と同じ方角。',
+    dishes: [
+      { name: '八戸らーめん（煮干し）', price: '看板' },
+      { name: 'セットメニュー（焼売・唐揚げ・八宝菜ほか）', price: '各種' },
+    ],
+    memo: [
+      '営業時間は情報源で食い違う（11:00〜22:30 / 11:30〜21:00 L.O.20:10）',
+      '不定休なので9/20に行くなら当日TELが確実',
+      'Day3のみろく横丁と場所が近いので、日を分けるなら考慮',
+    ],
+    status: 'check',
+    mapUrl: mapSearch('青森県八戸市内丸3-1-38 中国料理 正華'),
+    linkUrl: 'https://tabelog.com/aomori/A0203/A020301/2000651/',
+    linkLabel: '食べログで見る',
+  },
+  {
+    name: '中華料理 五香',
+    reading: 'ウーシャン',
+    genre: '町中華',
+    area: '湊高台',
+    address: '八戸市湊高台2-12-15',
+    tel: '0178-34-1894',
+    hours: '11:00〜14:45 / 17:00〜20:45',
+    closed: '火曜',
+    sunday: '9/20（日）は営業の想定',
+    hook: '値段がとにかく良心的な一軒。餃子380円、ラーメン700円、看板の五目あんかけご飯が900円。担々麺・蝦仁湯麺・麻婆麺あたりを推すブログも多く、麺の選択肢が広い。',
+    dishes: [
+      { name: '五目あんかけご飯', price: '900円' },
+      { name: 'ラーメン', price: '700円' },
+      { name: 'チャーハン', price: '800円' },
+      { name: '餃子', price: '380円' },
+      { name: '担々麺 / 蝦仁湯麺 / 麻婆麺', price: 'おすすめ' },
+    ],
+    memo: ['9/22（火）は定休日なのでDay3には使えない', 'PayPay可'],
+    status: 'tentative',
+    mapUrl: mapSearch('青森県八戸市湊高台2-12-15 中華料理 五香'),
+    linkUrl: 'https://r.gnavi.co.jp/hxzgsjg20000/',
+    linkLabel: 'ぐるなびで見る',
+  },
+  {
+    name: '美野雲飯店',
+    reading: 'ミノンハンテン',
+    genre: '町中華',
+    area: '南類家',
+    address: '八戸市南類家5-1-43',
+    tel: '0178-47-8770',
+    hours: '11:00〜14:30 / 17:30〜21:00（L.O.は30分前）',
+    closed: '木曜',
+    sunday: '9/20（日）は営業の想定',
+    hook: '店主がホテルの料理人出身という、町中華の見た目でつくりが丁寧な店。ジャンボ餃子600円が名物で、蒸し餃子は注文から20分ほどかかる＝それだけ作り置きしていないということ。旅の初日にゆっくり座るならここ。',
+    dishes: [
+      { name: 'ジャンボ餃子', price: '600円' },
+      { name: '五目タンメン', price: '看板' },
+      { name: '麻婆豆腐', price: '火曜は1,000円' },
+      { name: '冷やし油淋鶏麺', price: '季節' },
+    ],
+    memo: ['店の前に駐車場あり', '週末の昼は混みやすい', '蒸し餃子は提供まで約20分'],
+    status: 'tentative',
+    mapUrl: mapSearch('青森県八戸市南類家5-1-43 美野雲飯店'),
+    linkUrl: 'https://tabelog.com/aomori/A0203/A020301/2010049/',
+    linkLabel: '食べログで見る',
+  },
+  {
+    name: '中国料理 庄屋',
+    reading: 'しょうや',
+    genre: '町中華',
+    area: '田向',
+    address: '八戸市田向5-21-1',
+    tel: '0178-96-6888',
+    hours: '11:00〜19:30（情報源により 11:00〜14:30 / 17:00〜21:00 とも）',
+    closed: '月曜・第3木曜（木曜はランチのみの情報あり）',
+    sunday: '9/20（日）は営業の想定。ただし閉店が早い可能性',
+    hook: '人気ナンバーワンが五目あんかけ焼きそば、名物が豚バラやわらか煮ごはん。角煮バーガーやエビあんかけラーメンなど新メニューも出す、攻めの町中華。量が多いという声が多い。',
+    dishes: [
+      { name: '五目あんかけ焼きそば（人気No.1）', price: '1,223円' },
+      { name: '豚バラやわらか煮ごはん', price: '1,410円' },
+      { name: 'ハーフ炒飯', price: '683円' },
+    ],
+    memo: [
+      '閉店時刻の情報が19:30と21:00で食い違う。夜に行くなら要TEL',
+      '食べログは閉店した旧・長苗代店のページしかないため、リンクはぐるなび',
+    ],
+    status: 'check',
+    mapUrl: mapSearch('青森県八戸市田向5-21-1 中国料理 庄屋'),
+    linkUrl: 'https://r.gnavi.co.jp/6z2cpve70000/',
+    linkLabel: 'ぐるなびで見る',
   },
 ];
 
